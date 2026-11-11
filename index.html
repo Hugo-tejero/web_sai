@@ -7,7 +7,7 @@
 <meta name="description" content="Web interactiva que explica los SAI (sistemas de alimentación ininterrumpida) a clientes sin conocimientos técnicos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
 
 <div class="wrap">
 <header class="hero">
-  <p class="eyebrow">Guía técnica SAI · Legrand · 2013</p>
+  <p class="eyebrow">Basado en la Guía Técnica SAI de Legrand (2013)</p>
   <h1>Descubre qué SAI necesitas</h1>
   <p class="lede">Un SAI es el aparato que mantiene encendido tu equipo cuando la corriente falla o llega mal. Aquí ves qué problemas hay en la red, qué tipos de SAI existen y cómo elegir el tuyo.</p>
   <div class="legend">
@@ -35,6 +35,7 @@
 
 <nav class="nav" aria-label="Secciones">
   <ul>
+    <li><a href="#basico">Lo básico</a></li>
     <li><a href="#red"><b>1</b>La red</a></li>
     <li><a href="#tipos"><b>2</b>Tipos de SAI</a></li>
     <li><a href="#usos"><b>3</b>Para qué</a></li>
@@ -46,13 +47,48 @@
 
 <main>
 
+<!-- 0. ANTES DE EMPEZAR -->
+<section class="sec intro" id="basico">
+  <div class="sec-head"><h2>Antes de empezar</h2></div>
+  <p class="take">Un SAI es un aparato que sigue dando corriente a tu equipo cuando la de la red falla o llega mal.</p>
+  <dl class="defs">
+    <div><dt>SAI</dt><dd>
+      <p><b>Sistema de Alimentación Ininterrumpida</b> (en inglés, UPS). Se coloca entre el enchufe y tu equipo. Si la corriente se va o llega mal, sigue alimentando el equipo con sus baterías, así que no se apaga de golpe ni pierde datos. <span class="src">p. 1</span> <span class="src">p. 10</span></p>
+      <p class="ejemplo"><span class="own">propio</span> Es como una linterna de emergencia que se enciende sola cuando se va la luz.</p></dd></div>
+    <div><dt>Perturbación eléctrica</dt><dd>
+      <p>La guía las llama «interferencias de la red». Es cualquier cosa que hace que la corriente llegue distinta de lo normal: se corta, baja, sube o se deforma. Importa porque los equipos delicados pueden apagarse, estropearse o perder datos. <span class="src">p. 2</span></p>
+      <p class="ejemplo"><span class="own">propio</span> Es como el agua del grifo cuando sale a golpes o con poca presión.</p></dd></div>
+    <div><dt>Batería</dt><dd>
+      <p>Guarda la energía que el SAI usa cuando falta la red. Por eso tiene que estar siempre conectada, cargada y en buen estado. <span class="src">p. 10</span></p></dd></div>
+    <div><dt>Inversor</dt><dd>
+      <p>Es la pieza que toma la energía de la batería y se la entrega a tus equipos cuando falta la red. <span class="src">p. 4</span> <span class="own">propio</span> En palabras sencillas, la transforma en el tipo de corriente que dan los enchufes.</p></dd></div>
+  </dl>
+  <details class="more"><summary>Mini diccionario: otras palabras que verás</summary>
+    <dl class="dict">
+      <div><dt>Tensión (V)</dt><dd>Se mide en voltios. La guía toma 230 V como valor normal. <span class="src">p. 8</span> <span class="own">propio</span> Es como la presión del agua en una tubería.</dd></div>
+      <div><dt>Frecuencia (Hz)</dt><dd>Los ciclos por segundo de la corriente. En los modelos de la guía es de 50 o 60 Hz. <span class="src">p. 32</span> <span class="own">propio</span> la definición sencilla.</dd></div>
+      <div><dt>Forma de onda</dt><dd>La corriente de la red debería subir y bajar con una curva suave, la onda sinusoidal. Si se deforma, es una perturbación. <span class="src">p. 5</span></dd></div>
+      <div><dt>Carga</dt><dd>Lo que conectas al SAI para protegerlo: ordenadores, cajas registradoras, etc. <span class="src">p. 15</span></dd></div>
+      <div><dt>Grupo electrógeno</dt><dd>Generador de electricidad que se usa cuando falla la red. <span class="src">p. 3</span> <span class="own">propio</span> la explicación.</dd></div>
+      <div><dt>AVR</dt><dd>Regulador automático de tensión: filtra y estabiliza la tensión que llega. <span class="src">p. 4</span></dd></div>
+      <div><dt>Bypass</dt><dd>Camino alternativo: si el SAI se sobrecarga o falla por dentro, conecta el equipo directamente a la entrada para que siga con corriente. <span class="src">p. 4</span></dd></div>
+      <div><dt>Módulo</dt><dd>Cada SAI pequeño dentro de un SAI modular. Varios módulos juntos alimentan la carga. <span class="src">p. 17</span></dd></div>
+      <div><dt>Redundancia</dt><dd>Tener más módulos de los necesarios para que, si uno falla, el resto siga cubriendo la carga. <span class="src">p. 17</span> <span class="own">propio</span> la redacción.</dd></div>
+      <div><dt>Punto único de fallo</dt><dd>Una pieza de la que depende todo: si falla, se cae todo. <span class="src">p. 16</span></dd></div>
+      <div><dt>VRLA</dt><dd>Batería de plomo-ácido sellada y regulada por válvula, la más habitual en los SAI. <span class="src">p. 10</span></dd></div>
+      <div><dt>ms (milisegundo)</dt><dd><span class="own">propio</span> Una milésima de segundo.</dd></div>
+    </dl>
+  </details>
+  <p class="aside">La guía es de 2013. Describe los productos y las normas de esa fecha, y cita directivas y normas de esa época (por ejemplo, en la p. 7). Antes de decidir una compra, comprueba que los modelos y las normas siguen vigentes en la ficha actual del fabricante.</p>
+</section>
+
 <!-- 1. PROBLEMAS DE LA RED -->
 <section class="sec" id="red">
-  <div class="sec-head"><span class="no">1</span><h2>Qué le pasa a la corriente</h2>
-    <p class="lead">La red eléctrica no siempre llega limpia. Elige un problema y mira cómo cambia la tensión que recibe tu equipo.</p></div>
+  <div class="sec-head"><span class="no">1</span><h2>Qué le pasa a la corriente</h2></div>
+  <p class="take"><span class="take-l">Lo importante</span>La red eléctrica puede fallar de siete maneras, y todas pueden dañar tu equipo o hacerte perder datos.</p>
   <div class="split">
-    <div class="plist" id="plist" role="group" aria-label="Problemas de la red"></div>
-    <div class="panel" id="wavepanel">
+    <div><p class="hint">Elige un problema</p><div class="plist" id="plist" role="group" aria-label="Problemas de la red"></div></div>
+    <div class="panel stage" id="wavepanel">
       <svg class="wave" id="waveSvg" viewBox="0 0 640 200" role="img" aria-label="Tensión normal frente a tensión con el problema elegido">
         <rect class="zone" id="zone" x="0" y="0" width="0" height="200"/>
         <line class="grid" x1="0" y1="100" x2="640" y2="100"/>
@@ -61,33 +97,45 @@
         <path class="w-norm" id="wNorm" d=""/>
         <path class="w-act" id="wAct" d=""/>
       </svg>
-      <p class="cap"><span class="own">propio</span> Dibujo esquemático, no está a escala. Línea discontinua: tensión normal. Línea azul: lo que llega al equipo. Zona sombreada: el momento del problema.</p>
-      <h3 id="pName"></h3>
-      <p id="pPlain"></p>
-      <dl class="facts">
-        <div><dt>Qué es</dt><dd id="pQue"></dd></div>
-        <div><dt>Qué lo causa</dt><dd id="pCausa"></dd></div>
-        <div><dt>Qué provoca</dt><dd id="pEfecto"></dd></div>
-      </dl>
+      <p class="cap">Línea discontinua: tensión normal. Línea azul: lo que llega al equipo. Zona sombreada: cuándo ocurre. <span class="own">propio</span> dibujo esquemático, no a escala.</p>
+      <h3 id="pName" style="margin-top:14px"></h3>
+      <div id="pKey"></div>
+      <div class="trio">
+        <div><h4>Qué pasa</h4><p id="pQ"></p></div>
+        <div><h4>Qué lo causa</h4><p id="pC"></p></div>
+        <div><h4>Qué provoca</h4><p id="pE"></p></div>
+      </div>
+      <details class="more"><summary>Ver el detalle de la guía</summary>
+        <dl class="facts">
+          <div><dt>Qué es</dt><dd id="pQue"></dd></div>
+          <div><dt>Qué lo causa</dt><dd id="pCausa"></dd></div>
+          <div><dt>Qué provoca</dt><dd id="pEfecto"></dd></div>
+        </dl>
+      </details>
     </div>
   </div>
-  <p class="note">Cuanto más se aleja la tensión de los 230 V, menos tiempo la aguantan los equipos sin sufrir fallos o averías. La curva ITIC de la guía lo recoge para ordenadores y equipos parecidos. <span class="src">p. 8</span></p>
+  <p class="aside">Las pp. 2 y 3 de la guía describen estos siete problemas; la p. 6 usa otra lista, de diez tipos de perturbación (en la sección 2). Son dos clasificaciones distintas y no coinciden una a una. <span class="src">p. 2</span> <span class="src">p. 6</span></p>
+  <p class="aside">Cuanto más se aleja la tensión de los 230 V, menos tiempo la aguantan los equipos sin fallos o averías (curva ITIC, para ordenadores y equipos parecidos). <span class="src">p. 8</span></p>
 </section>
 
 <!-- 2. TIPOS -->
-<section class="sec" id="tipos">
-  <div class="sec-head"><span class="no">2</span><h2>Tres tipos de SAI</h2>
-    <p class="lead">Cambia de tipo y simula un corte de luz. Verás por dónde pasa la energía y cuánto tarda el SAI en reaccionar.</p></div>
-  <div class="panel">
-    <div class="tabs" id="tipoTabs" role="group" aria-label="Tipo de SAI"></div>
+<section class="sec band" id="tipos">
+  <div class="sec-head"><span class="no">2</span><h2>Tres tipos de SAI</h2></div>
+  <p class="take"><span class="take-l">Lo importante</span>Cuanto más completo es el SAI, más interferencias elimina y menos tarda en reaccionar.</p>
+  <p class="sublead">Elige un tipo y simula que se va la luz. Fíjate en dos cosas: qué interferencias deja pasar y cuánto tarda en pasar a baterías. A eso último se le llama <b>tiempo de conmutación</b>.</p>
+  <div class="panel stage">
+    <p class="hint">1 · Elige un tipo</p>
+    <div class="bigtabs" id="tipoTabs" role="group" aria-label="Tipo de SAI"></div>
+    <p class="hint">2 · Mira qué pasa con la red</p>
     <div class="tabs" id="escTabs" role="group" aria-label="Situación de la red"></div>
     <div class="scroll" id="tipoDiagram"></div>
     <p class="cap"><span class="own">propio</span> Esquema simplificado a partir de los dibujos de la guía. La línea que se mueve marca el camino de la energía.</p>
-    <div class="status" id="tipoStatus" aria-live="polite"></div>
-    <p class="note" id="tipoAnalog"></p>
-    <details>
+    <div id="tipoStatus" aria-live="polite"></div>
+    <p class="aside" id="tipoAnalog"></p>
+    <details class="more">
       <summary>Qué problemas de la red cubre cada tipo <span class="src">p. 6</span></summary>
       <p class="cap"><span class="own">propio</span> La guía agrupa con corchetes los diez problemas según la clasificación (VFD, VI, VFI). Aquí lo leemos como los problemas que cubre cada tipo.</p>
+      <p class="cap"><span class="own">propio</span> Punto a contrastar: en la p. 4 la guía dice que el off-line solo interviene cuando falta la tensión de entrada, pero los corchetes de la p. 6 también le asignan las fluctuaciones y sobretensiones breves (puntos 2 y 3). La guía no explica cómo; consúltalo en la ficha del fabricante.</p>
       <div class="scroll"><table>
         <thead><tr><th>Problema de la red</th><th>Off-line (VFD)</th><th>Line-interactive (VI)</th><th>On-line (VFI)</th></tr></thead>
         <tbody>
@@ -104,17 +152,18 @@
         </tbody></table></div>
     </details>
   </div>
-  <p class="note">La guía clasifica los SAI con la norma EN 62040-3 con un código de tres partes: dependencia de la salida respecto a la entrada, forma de onda y comportamiento ante cambios de carga. Los mejores tienen clasificación VFI SS 111. <span class="src">p. 5</span></p>
+  <p class="aside">La norma EN 62040-3 clasifica los SAI con un código de tres partes: dependencia de la salida respecto a la entrada, forma de onda y comportamiento ante cambios de carga. Los mejores tienen clasificación VFI SS 111. <span class="src">p. 5</span></p>
 </section>
 
 <!-- 3. APLICACIONES -->
 <section class="sec" id="usos">
-  <div class="sec-head"><span class="no">3</span><h2>Para qué se usa cada uno</h2>
-    <p class="lead">Elige dónde lo vas a poner y mira qué tipo le corresponde según la guía.</p></div>
-  <div class="panel">
+  <div class="sec-head"><span class="no">3</span><h2>Para qué se usa cada uno</h2></div>
+  <p class="take"><span class="take-l">Lo importante</span>Cada tipo de SAI tiene sus usos: elige según lo que quieras proteger.</p>
+  <div class="panel stage">
+    <p class="hint">Elige dónde lo vas a usar</p>
     <div class="tabs" id="usoTabs" role="group" aria-label="Dónde se va a usar"></div>
     <div id="usoOut" aria-live="polite"></div>
-    <details>
+    <details class="more">
       <summary>Ver la lista completa de aplicaciones por tipo <span class="src">p. 9</span></summary>
       <div class="three">
         <div><h4>Off-line</h4><ul>
@@ -130,91 +179,106 @@
 
 <!-- 4. ARQUITECTURAS -->
 <section class="sec" id="instalacion">
-  <div class="sec-head"><span class="no">4</span><h2>Cómo se instala</h2>
-    <p class="lead">Un SAI para cada equipo, uno para todo, o varios módulos que trabajan juntos. Pulsa un SAI o un módulo para averiarlo y mira qué pasa.</p></div>
-  <div class="panel">
-    <div class="tabs" id="arqTabs" role="group" aria-label="Arquitectura"></div>
-    <p class="when" id="arqWhen"></p>
+  <div class="sec-head"><span class="no">4</span><h2>Cómo se instala</h2></div>
+  <p class="take"><span class="take-l">Lo importante</span>Un SAI para cada equipo, uno para todo, o varios módulos que se reparten el trabajo.</p>
+  <p class="sublead">La arquitectura es la forma de repartir la protección: un SAI para cada carga (distribuida), un SAI para varias (centralizada) o un SAI formado por módulos que se reparten el trabajo (modular). <span class="src">p. 15</span> <span class="src">p. 16</span> <span class="src">p. 17</span> <span class="src">p. 18</span></p>
+  <div class="panel stage">
+    <p class="hint">Elige una forma de instalarlo</p>
+    <div class="bigtabs" id="arqTabs" role="group" aria-label="Arquitectura"></div>
+    <p class="ideal" id="arqWhen"></p>
+    <p class="hint">Pulsa un SAI o un módulo para averiarlo</p>
     <div id="arqDraw"></div>
     <div class="tabs"><button type="button" class="btn" id="arqReset">Reparar todo</button></div>
     <p class="msg" id="arqMsg" aria-live="polite"></p>
-    <p class="cap"><span class="own">propio</span> Las cifras del ejemplo (módulos y potencia necesaria) son inventadas para ilustrar. Lo que cuenta de cada arquitectura está en las listas de abajo.</p>
+    <p class="cap"><span class="own">propio</span> Las cifras del ejemplo (módulos, cargas y potencia necesaria) son inventadas para ilustrar.</p>
     <div class="procon">
-      <div><h4>A favor</h4><ul class="pro" id="arqPro"></ul></div>
-      <div><h4>En contra</h4><ul class="con" id="arqCon"></ul></div>
+      <div><h4>A favor</h4><div id="arqPro"></div></div>
+      <div><h4>En contra</h4><div id="arqCon"></div></div>
     </div>
   </div>
 </section>
 
 <!-- 5. BATERÍAS -->
-<section class="sec" id="baterias">
-  <div class="sec-head"><span class="no">5</span><h2>Las baterías</h2>
-    <p class="lead">Sin baterías en buen estado, el SAI no sirve de nada. Mira de qué están hechas, cuánto duran y qué las desgasta.</p></div>
+<section class="sec band amber" id="baterias">
+  <div class="sec-head"><span class="no">5</span><h2>Las baterías</h2></div>
+  <p class="take"><span class="take-l">Lo importante</span>El calor es el enemigo de las baterías: por cada 10 °C más, duran la mitad.</p>
+  <p class="sublead">La batería guarda la energía que se usa cuando falla la red. Si no está cargada y en buen estado, el SAI no protege nada. <span class="src">p. 10</span> <span class="src">p. 13</span></p>
   <div class="cols2">
     <div class="panel">
-      <h3>Qué batería lleva un SAI</h3>
-      <p>Casi todos llevan baterías de plomo-ácido selladas, reguladas por válvula (VRLA). Están cerradas herméticamente, no necesitan mantenimiento y los gases se recombinan dentro. Por eso se pueden instalar donde hay personas, sin estudios especiales de ventilación. <span class="src">p. 10</span></p>
-      <p>Pueden dar corrientes altas y trabajar de forma discontinua sin sufrir «efecto memoria». <span class="src">p. 11</span></p>
-      <p style="margin-bottom:0">Piezas que muestra la guía <span class="src">p. 10</span></p>
-      <ul class="parts">
-        <li>borne positivo</li><li>conexión de células de baja resistencia</li><li>placas paralelas del negativo</li><li>rejilla de plomo del negativo</li><li>separador</li><li>contenedor de polipropileno</li><li>tapa</li><li>válvula</li>
+      <h3>Cómo es la batería de un SAI</h3>
+      <p>Los SAI suelen llevar baterías de plomo-ácido selladas y reguladas por válvula (VRLA). <span class="src">p. 10</span></p>
+      <ul class="shorts">
+        <li><b>Están selladas.</b> Los gases se recombinan dentro y, según la guía, no necesitan mantenimiento propio; aun así, recomienda revisarlas una vez al año. <span class="src">p. 10</span> <span class="src">p. 12</span></li>
+        <li><b>Se pueden instalar donde hay personas.</b> Necesitan muy poco cambio de aire y normalmente no exigen un estudio especial de ventilación. <span class="src">p. 10</span></li>
+        <li><b>No tienen «efecto memoria».</b> Pueden dar corrientes altas, trabajar de forma discontinua y no hace falta descargarlas del todo. <span class="src">p. 11</span></li>
       </ul>
+      <details class="more">
+        <summary>Piezas de la batería</summary>
+        <ul class="parts">
+          <li>borne positivo</li><li>conexión de células de baja resistencia</li><li>placas paralelas del negativo</li><li>rejilla de plomo del negativo</li><li>separador</li><li>contenedor de polipropileno</li><li>tapa</li><li>válvula</li>
+        </ul>
+        <p class="cap">Piezas que muestra la guía. <span class="src">p. 10</span> El aire que necesitan se puede calcular con la norma EN 50272-2. <span class="src">p. 10</span></p>
+      </details>
     </div>
-    <div class="panel">
-      <h3>Cuánto duran según la temperatura</h3>
-      <label for="temp" class="mono" style="font-size:.8rem;color:var(--muted)">TEMPERATURA DE LA SALA: <output id="tempOut" class="mono" style="color:var(--ink)">25 °C</output></label>
+    <div class="panel stage">
+      <h3>¿Cuánto duran con el calor?</h3>
+      <label for="temp" class="slabel"><span>Temperatura de la sala</span> <output id="tempOut">25 °C</output></label>
       <input class="rng" id="temp" type="range" min="15" max="45" step="1" value="25" aria-describedby="tempCap">
-      <div class="lifebar" aria-hidden="true"><div class="lifefill" id="lifeFill" style="width:100%"></div></div>
-      <p style="margin:0"><span class="big" id="lifePct">100 %</span> <span style="color:var(--muted)">de la vida útil esperada</span></p>
+      <div class="ticks" aria-hidden="true"><span style="left:0;transform:none">15 °C</span><span style="left:33.3%">25 °C · normal</span><span style="left:100%;transform:translateX(-100%)">45 °C</span></div>
+      <div class="verdict ok" id="verdict"><b id="lifePct">100 %</b><span id="lifeTxt">de la vida esperada: vida normal</span></div>
       <div class="pairrow">
-        <div><small>Standard Life</small><span class="mono" id="lifeStd">5–6 años</span></div>
-        <div><small>Long Life</small><span class="mono" id="lifeLong">10–12 años</span></div>
+        <div><small>Batería Standard Life</small><span class="yrs" id="lifeStd">5–6 años</span></div>
+        <div><small>Batería Long Life</small><span class="yrs" id="lifeLong">10–12 años</span></div>
       </div>
-      <p class="cap" id="tempCap">La guía da 5–6 años (Standard Life) y 10–12 años (Long Life) con la temperatura nominal de 20–25 °C. Por cada 10 °C más, la vida se reduce a la mitad. Es un dato orientativo en condiciones estándar. <span class="src">p. 11</span> <span class="own">propio</span> El cálculo aplica esa regla; por debajo de 25 °C la guía no promete más vida, así que no la aumentamos.</p>
+      <p class="cap" id="tempCap">Dato orientativo: la guía da 5–6 y 10–12 años con la temperatura nominal de 20–25 °C. <span class="src">p. 11</span> <span class="own">propio</span> El cálculo aplica su regla (por cada 10 °C más, la mitad); entre un salto de 10 °C y el siguiente es una estimación nuestra. Por debajo de 25 °C no sumamos vida porque la guía no lo dice.</p>
     </div>
   </div>
-  <div class="cols2" style="margin-top:20px">
-    <div class="panel">
-      <h3>Cómo cuidarlas</h3>
-      <ul>
-        <li>Revisarlas y hacerles mantenimiento al menos una vez al año. <span class="src">p. 12</span></li>
-        <li>No dejarlas desconectadas más de seis a diez meses: se autodescargan y pueden dar problemas de recarga. <span class="src">p. 12</span></li>
-        <li>Si no usas el SAI, déjalo enchufado a la red: los modernos mantienen las baterías cargadas aunque estén apagados. <span class="src">p. 12</span></li>
-        <li>Cambiar el conjunto antes de que se agote del todo. <span class="src">p. 12</span></li>
-        <li>Los SAI modernos prueban y vigilan las baterías y avisan si detectan una anomalía. <span class="src">p. 12</span></li>
-      </ul>
+
+  <div class="panel" style="margin-top:20px">
+    <h3>Cómo cuidarlas</h3>
+    <div class="tiles">
+      <div class="tile"><small>Revisión y mantenimiento</small><b class="fig">1 vez al año</b><p>Como mínimo. <span class="src">p. 12</span></p></div>
+      <div class="tile"><small>Máximo sin conectarlas</small><b class="fig">6–10 meses</b><p>Se autodescargan y pueden dar problemas de recarga. <span class="src">p. 12</span></p></div>
+      <div class="tile"><small>Si no usas el SAI</small><b class="fig">Déjalo enchufado</b><p>Los modernos mantienen las baterías cargadas aunque estén apagados. <span class="src">p. 12</span></p></div>
+      <div class="tile"><small>Al final de su vida</small><b class="fig">Cámbialas a tiempo</b><p>Renueva el conjunto antes de que se agote del todo. <span class="src">p. 12</span></p></div>
     </div>
-    <div class="panel">
+    <p class="aside">Los SAI modernos prueban y vigilan las baterías y avisan si detectan una anomalía. <span class="src">p. 12</span></p>
+  </div>
+
+  <div class="panel stat" style="margin-top:20px">
+    <p class="kf" style="margin:0"><b>Hasta 50 %</b><span>más de vida</span></p>
+    <div>
       <h3>Carga inteligente (Smart Charge)</h3>
-      <p>El cargador mide tensión y corriente de las baterías y recarga por fases, según su estado. Al llegar a plena carga, la intensidad baja hasta anularse, así que no las fatiga. <span class="src">p. 13</span></p>
-      <p style="margin-bottom:0">Según la guía, este sistema en tres etapas alarga la vida de las baterías hasta un 50 %, lo que reduce a la mitad las sustituciones. <span class="src">p. 13</span></p>
+      <p style="margin:0">El cargador mide la tensión y la corriente de las baterías y recarga por fases, según su estado. Al llegar a plena carga, la intensidad baja hasta anularse, así que no las fatiga. <span class="src">p. 13</span></p>
+      <details class="more"><summary>Qué significa ese 50 %</summary><p>Según la guía, este sistema en tres etapas alarga la vida de las baterías hasta un 50 %, lo que reduce a la mitad el número de sustituciones. <span class="src">p. 13</span></p></details>
     </div>
   </div>
 </section>
 
 <!-- 6. ELEGIR -->
 <section class="sec" id="elegir">
-  <div class="sec-head"><span class="no">6</span><h2>Cómo elegir el tuyo</h2>
-    <p class="lead">Cuatro datos de la etiqueta y una calculadora para ver qué modelos de la guía aguantan lo que quieres proteger.</p></div>
+  <div class="sec-head"><span class="no">6</span><h2>Cómo elegir el tuyo</h2></div>
+  <p class="take"><span class="take-l">Lo importante</span>Mira los vatios (W) de tu equipo y elige un SAI que llegue, sin pasarte de tamaño.</p>
   <div class="terms">
-    <div class="term"><span class="k">VA</span><p><b>Potencia aparente.</b> La máxima que puede dar el SAI en su salida, medida en voltamperios. <span class="src">p. 7</span></p></div>
-    <div class="term"><span class="k">W</span><p><b>Potencia activa.</b> La máxima que puede dar el SAI en su salida, medida en vatios. <span class="src">p. 7</span></p></div>
-    <div class="term"><span class="k">FP</span><p><b>Factor de potencia.</b> La relación entre la potencia activa y la aparente: W dividido entre VA. <span class="src">p. 7</span></p></div>
-    <div class="term"><span class="k">min</span><p><b>Autonomía.</b> El tiempo máximo que el SAI puede dar energía sin red. Más autonomía pide más baterías y más tiempo de recarga. <span class="src">p. 7</span> <span class="src">p. 12</span></p></div>
+    <div class="term"><span class="k">VA</span><p><b>Potencia aparente:</b> la capacidad total del SAI, en voltamperios. Es lo máximo que puede entregar. <span class="src">p. 7</span></p></div>
+    <div class="term"><span class="k">W</span><p><b>Potencia activa:</b> la parte de esa capacidad que hace trabajo útil, en vatios. Suele ser la cifra que indican los equipos. <span class="src">p. 7</span> <span class="own">propio</span> la segunda frase.</p></div>
+    <div class="term"><span class="k">FP</span><p><b>Factor de potencia:</b> la relación entre W y VA, es decir, W ÷ VA. <span class="src">p. 7</span> Ejemplo de la guía: el NIKY 1000 da 1000 VA y 600 W, así que su FP es 0,6. <span class="src">p. 32</span></p></div>
+    <div class="term"><span class="k">min</span><p><b>Autonomía:</b> el tiempo máximo que el SAI puede alimentar la carga sin red. <span class="src">p. 7</span> Con más autonomía hacen falta más baterías y tardan más en recargarse; calcúlala con la carga real. <span class="src">p. 12</span></p></div>
   </div>
+  <p class="sublead" style="margin:-20px 0 44px"><span class="own">propio</span> Imagina una jarra de cerveza: la jarra entera es la capacidad (VA) y la cerveza que bebes son los vatios (W); el resto es espuma. Por eso un SAI de 1000 VA y 600 W no admite una carga de 800 W: hay que respetar los dos límites.</p>
 
   <div class="cols2">
-    <div class="panel">
+    <div class="panel stage">
       <h3>De vatios a voltamperios</h3>
-      <p>Si conoces los W de tu equipo y su factor de potencia, sacas los VA que necesita. Despejamos la fórmula de la guía: FP = W ÷ VA, luego VA = W ÷ FP. <span class="src">p. 7</span></p>
+      <p>Con los W de tu equipo y su factor de potencia, sacas los VA que necesita.</p>
       <div class="fields">
         <div class="field"><label for="cW">Potencia (W)</label><input id="cW" type="number" inputmode="decimal" min="0" step="any" value="500"></div>
         <div class="field"><label for="cPF">Factor de potencia</label><input id="cPF" type="number" inputmode="decimal" min="0.1" max="1" step="0.01" value="0.7"></div>
       </div>
       <p class="result" id="cOut" aria-live="polite"></p>
-      <p class="cap"><span class="own">propio</span> Valores de ejemplo: cámbialos por los de tu equipo.</p>
+      <p class="cap"><span class="own">propio</span> VA = W ÷ FP, despejado de la fórmula de la guía. <span class="src">p. 7</span> Redondeamos hacia arriba para no quedarnos cortos. Los valores son de ejemplo: cámbialos por los de tu equipo. Luego comprueba que los W del equipo no superan los W del SAI.</p>
     </div>
-    <div class="panel">
+    <div class="panel stage">
       <h3>Qué modelos de la guía llegan</h3>
       <div class="fields">
         <div class="field"><label for="mW">Tu carga (W)</label><input id="mW" type="number" inputmode="decimal" min="0" step="any" value="400"></div>
@@ -228,10 +292,10 @@
   <div class="panel" style="margin-top:20px">
     <h3>Antes de decidir</h3>
     <ol class="check">
-      <li><span>No basta con mirar la potencia que consume la carga: que el SAI tenga potencia suficiente no garantiza que sea la elección adecuada. <span class="src">p. 5</span></span></li>
-      <li><span>Para dimensionar hay cuatro cosas que conocer: la potencia máxima de la carga, el rendimiento del SAI, el circuito de entrada del SAI y las posibles fuentes de energía adicionales. <span class="src">p. 19</span></span></li>
-      <li><span>Calcula la autonomía según la carga real que vas a proteger, no según la potencia nominal del SAI. <span class="src">p. 12</span></span></li>
-      <li><span>Evita pasarte de tamaño: un SAI sobredimensionado cuesta más al comprarlo y gasta más después. <span class="src">p. 24</span></span></li>
+      <li><span><b>No basta con mirar los W de tu equipo.</b> Que el SAI tenga potencia suficiente no garantiza que sea la elección adecuada. <span class="src">p. 5</span></span></li>
+      <li><span><b>Hay cuatro cosas que conocer:</b> la potencia máxima de la carga, el rendimiento del SAI, su circuito de entrada y las posibles fuentes de energía adicionales. <span class="src">p. 19</span></span></li>
+      <li><span><b>Calcula la autonomía con la carga real</b> que vas a proteger, no con la potencia nominal del SAI. <span class="src">p. 12</span></span></li>
+      <li><span><b>No te pases de tamaño:</b> un SAI sobredimensionado cuesta más al comprarlo y gasta más después. <span class="src">p. 24</span></span></li>
     </ol>
   </div>
 </section>
@@ -241,6 +305,7 @@
 <footer>
   <p>Contenido técnico: Guía Técnica SAI, sistemas de alimentación ininterrumpida, Legrand (2013). Cada dato indica su página. Los dibujos, las analogías y las cifras de los ejemplos son propios y van marcados.</p>
   <p>La guía escribe «kVA» en las tablas de los modelos NIKY y Megaline, pero los valores son voltamperios (VA). Aquí se muestran en VA.</p>
+  <p>La guía es de 2013: los modelos, las normas y las directivas que cita pueden haber cambiado desde entonces.</p>
 </footer>
 </div>
 <script src="script.js" defer></script>
