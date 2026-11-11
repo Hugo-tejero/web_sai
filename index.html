@@ -1,313 +1,816 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
 <title>Descubre tu SAI</title>
-<meta name="description" content="Web interactiva que explica los SAI (sistemas de alimentación ininterrumpida) a clientes sin conocimientos técnicos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Figtree:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <marker id="ahOn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-on" d="M0 0L10 5L0 10z"/></marker>
-    <marker id="ahOff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-off" d="M0 0L10 5L0 10z"/></marker>
-  </defs>
-</svg>
+<style>
+/* Concepto: un SAI limpia la corriente. Cada sección tiene su propio color y su propia ilustración; el texto va en frases cortas. */
+:root{
+  --bg:#F7F6FF;--surface:#FFFFFF;--ink:#16134A;--muted:#5D5A8C;--line:#DAD7F5;--chip:#ECEAFB;
+  --hero:#1D1470;--hero-ink:#FFFFFF;--foam:#FFF8E1;--beer:#FFB627;
+  --yellow:#FFD23F;--yellow-soft:#FFF3C2;--yellow-ink:#8A6A00;
+  --coral:#FF5A5F;--coral-soft:#FFE3E0;--coral-ink:#C4252B;
+  --violet:#7B4DFF;--violet-soft:#ECE5FF;--violet-ink:#5A2FD6;
+  --teal:#00B8A9;--teal-soft:#D2F6F1;--teal-ink:#00776D;
+  --blue:#2D6BFF;--blue-soft:#DEE8FF;--blue-ink:#1F4FCC;
+  --orange:#FF9F1C;--orange-soft:#FFEACB;--orange-ink:#A85F00;
+  --green:#2DBE60;--green-soft:#DAF6E4;--green-ink:#167A3E;
+  --display:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0E2A;--surface:#1A1840;--ink:#F1F0FF;--muted:#A9A7D0;--line:#34316B;--chip:#26235A;--hero:#0B0A2E;
+    --yellow-soft:#3B3410;--yellow-ink:#FFD23F;--coral-soft:#3F1D25;--coral-ink:#FF8C90;
+    --violet-soft:#2A2158;--violet-ink:#B5A0FF;--teal-soft:#113A3A;--teal-ink:#4FE0D2;
+    --blue-soft:#172B5C;--blue-ink:#8FB0FF;--orange-soft:#3D2A10;--orange-ink:#FFB85A;
+    --green-soft:#12392A;--green-ink:#5EDB8C;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F0E2A;--surface:#1A1840;--ink:#F1F0FF;--muted:#A9A7D0;--line:#34316B;--chip:#26235A;--hero:#0B0A2E;
+  --yellow-soft:#3B3410;--yellow-ink:#FFD23F;--coral-soft:#3F1D25;--coral-ink:#FF8C90;
+  --violet-soft:#2A2158;--violet-ink:#B5A0FF;--teal-soft:#113A3A;--teal-ink:#4FE0D2;
+  --blue-soft:#172B5C;--blue-ink:#8FB0FF;--orange-soft:#3D2A10;--orange-ink:#FFB85A;
+  --green-soft:#12392A;--green-ink:#5EDB8C;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.5 var(--body);-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:40}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:8px}
+p{margin:0}
+h1,h2,h3,h4{margin:0;font-family:var(--display);text-wrap:balance}
+ul{margin:0;padding:0;list-style:none}
+i[data-ico]{display:inline-flex;line-height:0}
+.ico{display:block}
+.in{max-width:1080px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 
-<div class="wrap">
-<header class="hero">
-  <p class="eyebrow">Basado en la Guía Técnica SAI de Legrand (2013)</p>
-  <h1>Descubre qué SAI necesitas</h1>
-  <p class="lede">Un SAI es el aparato que mantiene encendido tu equipo cuando la corriente falla o llega mal. Aquí ves qué problemas hay en la red, qué tipos de SAI existen y cómo elegir el tuyo.</p>
-  <div class="legend">
-    <span><span class="src">p. 4</span> dato sacado de esa página de la guía</span>
-    <span><span class="own">propio</span> explicación o dibujo nuestro, no es de la guía</span>
-  </div>
-  <div class="heroWave">
-    <svg viewBox="0 0 1000 84" preserveAspectRatio="none" role="img" aria-label="Onda sinusoidal limpia de la tensión de red"><line class="mid" x1="0" y1="42" x2="1000" y2="42"/><path id="heroPath" d=""/></svg>
-    <div class="wave-cap"><span>Tensión nominal: 230 V <span class="src">p. 8</span></span><span>Así debería llegar siempre a tus equipos</span></div>
-  </div>
-</header>
+/* Tonos por sección */
+.c-yellow{--h:var(--yellow);--hs:var(--yellow-soft);--hi:var(--yellow-ink);--on:#2B2200}
+.c-coral{--h:var(--coral);--hs:var(--coral-soft);--hi:var(--coral-ink);--on:#FFFFFF}
+.c-violet{--h:var(--violet);--hs:var(--violet-soft);--hi:var(--violet-ink);--on:#FFFFFF}
+.c-teal{--h:var(--teal);--hs:var(--teal-soft);--hi:var(--teal-ink);--on:#06302C}
+.c-blue{--h:var(--blue);--hs:var(--blue-soft);--hi:var(--blue-ink);--on:#FFFFFF}
+.c-orange{--h:var(--orange);--hs:var(--orange-soft);--hi:var(--orange-ink);--on:#2B1800}
+.c-green{--h:var(--green);--hs:var(--green-soft);--hi:var(--green-ink);--on:#05301A}
 
-<nav class="nav" aria-label="Secciones">
-  <ul>
-    <li><a href="#basico">Lo básico</a></li>
-    <li><a href="#red"><b>1</b>La red</a></li>
-    <li><a href="#tipos"><b>2</b>Tipos de SAI</a></li>
-    <li><a href="#usos"><b>3</b>Para qué</a></li>
-    <li><a href="#instalacion"><b>4</b>Instalación</a></li>
-    <li><a href="#baterias"><b>5</b>Baterías</a></li>
-    <li><a href="#elegir"><b>6</b>Elegir</a></li>
-  </ul>
-</nav>
+/* Etiquetas de origen */
+.src,.own{display:inline-block;font:600 .7rem/1.55 var(--body);padding:0 .5em;border-radius:99px;white-space:nowrap;vertical-align:.1em;background:var(--chip);color:var(--muted);margin-left:.25em}
+.own{background:transparent;border:1px dashed var(--muted);line-height:1.4}
+
+/* Portada */
+.hero{background:radial-gradient(60% 90% at 90% 0%,color-mix(in srgb,var(--violet) 60%,transparent),transparent),radial-gradient(50% 70% at 0% 100%,color-mix(in srgb,var(--coral) 40%,transparent),transparent),var(--hero);color:var(--hero-ink);border-radius:0 0 44px 44px;padding-block:clamp(32px,7vw,72px) 36px}
+.pill-y{display:inline-flex;background:var(--yellow);color:#2B2200;font:700 .85rem var(--body);padding:.3rem .9rem;border-radius:99px}
+h1{font:800 clamp(2.8rem,10vw,6rem)/.95 var(--display);letter-spacing:-.03em;margin:.35em 0 .25em;max-width:11ch}
+.hl{color:var(--yellow);position:relative;white-space:nowrap}
+.lede{font-size:clamp(1.15rem,3vw,1.45rem);max-width:30ch;opacity:.92}
+.flow{margin-top:30px}
+.flow svg{display:block;width:100%;height:auto}
+.flow-cap{display:flex;justify-content:space-between;font:700 .95rem var(--body);margin-top:6px;opacity:.9;gap:8px}
+.flow-cap span{flex:1}.flow-cap span:nth-child(2){text-align:center}.flow-cap span:last-child{text-align:right}
+.legend{margin-top:18px;font-size:.88rem;opacity:.85}
+.hero .src{background:rgba(255,255,255,.18);color:#fff}
+.hero .own{border-color:rgba(255,255,255,.6);color:#fff}
+
+/* Navegación */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.nav ul{display:flex;gap:6px;overflow-x:auto;padding-block:10px;scrollbar-width:none}
+.nav li{flex:none}
+.nav a{display:flex;align-items:center;gap:7px;padding:.4rem .85rem;border-radius:99px;background:var(--chip);color:var(--ink);text-decoration:none;font:600 .92rem var(--body);white-space:nowrap}
+.nav a::before{content:"";width:.7em;height:.7em;border-radius:50%;background:var(--h)}
+.nav a[aria-current="true"]{background:var(--h);color:var(--on)}
+.nav a[aria-current="true"]::before{background:var(--on)}
+
+.nav a b{font-weight:800}
+/* Secciones */
+.band{background:var(--hs);padding-block:clamp(44px,8vw,80px);scroll-margin-top:calc(56px + env(safe-area-inset-top,0px))}
+.plain{padding-block:clamp(40px,7vw,64px) clamp(44px,8vw,80px)}
+.sh{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.blob{flex:none;width:64px;height:64px;border-radius:22px;background:var(--h);color:var(--on);display:grid;place-items:center;transform:rotate(-6deg)}
+h2{font:800 clamp(1.7rem,5.2vw,3rem)/1.05 var(--display);letter-spacing:-.025em}
+.take{font:600 1.05rem var(--body);color:var(--hi);margin-top:4px}
+.stage{background:var(--surface);border-radius:28px;padding:clamp(16px,3.5vw,30px);min-width:0}
+.hint{font:700 .8rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--hi);margin-bottom:10px}
+.cap{font-size:.88rem;color:var(--muted);margin-top:10px}
+.stack{display:grid;gap:18px}
+
+/* Tarjetas y botones */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}
+.cards>*{min-width:0}
+.q{background:var(--hs);border-radius:26px;padding:20px;display:grid;gap:8px;align-content:start}
+.q .blob{width:52px;height:52px;border-radius:18px}
+.q h3{font:800 1.5rem var(--display)}
+.fun{font-size:.92rem;color:var(--muted)}
+.chip,.bt,.tile-btn{font:inherit;color:var(--ink);cursor:pointer;border:2px solid var(--line);background:var(--surface);transition:transform .15s,background .15s,border-color .15s}
+.chip{font-weight:600;font-size:.98rem;padding:.45rem .95rem;border-radius:99px}
+.chip:hover,.bt:hover,.tile-btn:hover{border-color:var(--h);transform:translateY(-2px)}
+.chip[aria-pressed="true"],.bt[aria-pressed="true"],.tile-btn[aria-pressed="true"]{background:var(--h);border-color:var(--h);color:var(--on)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:700 1rem var(--body);padding:.6rem 1.2rem;border-radius:99px;border:0;background:var(--h);color:var(--on);cursor:pointer}
+.btn.ghost{background:var(--chip);color:var(--ink)}
+.bigtabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.bt{text-align:left;padding:14px 16px;border-radius:22px;display:grid;gap:4px}
+.bt b{font:800 1.2rem/1.15 var(--display)}
+.bt span{font-size:.9rem;opacity:.85}
+.shields{display:flex;gap:3px;color:inherit}
+.dict-out{margin-top:14px;min-height:3.2em;font-size:1.05rem;background:var(--surface);border-radius:20px;padding:12px 16px}
+.dict-out b{font:800 1.2rem var(--display);margin-right:.4em}
+.chipl{display:flex;flex-wrap:wrap;gap:8px}
+.chipl li{padding:.35rem .9rem;border-radius:99px;background:var(--hs);color:var(--ink);font-weight:600;font-size:.95rem}
+details.more{margin-top:14px}
+details.more>summary{cursor:pointer;font:700 .98rem var(--body);color:var(--hi);list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"";width:.5em;height:.5em;border-right:2.5px solid currentColor;border-bottom:2.5px solid currentColor;transform:rotate(-45deg);transition:transform .2s}
+details.more[open]>summary::before{transform:rotate(45deg)}
+details.more>*:not(summary){margin-top:12px}
+
+/* 1. Problemas */
+.probs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:10px;margin-bottom:16px}
+.tile-btn{border-radius:22px;padding:10px 10px 12px;display:grid;gap:4px;text-align:left;color:var(--hi)}
+.tile-btn svg{width:100%;height:40px;display:block}
+.tile-btn span{font:700 .88rem/1.15 var(--body);color:var(--ink)}
+.tile-btn[aria-pressed="true"],.tile-btn[aria-pressed="true"] span{color:var(--on)}
+.wave{display:block;width:100%;height:auto;background:var(--hs);border-radius:20px}
+.wave .grid{stroke:var(--line);stroke-width:1}
+.wave .zone{fill:var(--yellow);opacity:.35}
+.w-norm{fill:none;stroke:var(--muted);stroke-width:2;stroke-dasharray:2 7;stroke-linecap:round}
+.w-act{fill:none;stroke:var(--h);stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
+.kf{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 12px;margin-top:12px}
+.kf b{font:800 clamp(2.4rem,8vw,3.6rem)/1 var(--display);color:var(--hi);letter-spacing:-.03em}
+.kf span{color:var(--muted)}
+.pname{font:800 1.5rem var(--display);margin-top:14px}
+.rows3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px;margin-top:12px}
+.row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;background:var(--hs);border-radius:20px;padding:12px 14px}
+.row .ri{width:38px;height:38px;border-radius:13px;background:var(--h);color:var(--on);display:grid;place-items:center}
+.row small{display:block;font:700 .75rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--hi)}
+.row p{font-weight:600;line-height:1.3}
+.notes{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.note{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:600;background:var(--surface);border-radius:99px;padding:.4rem .9rem}
+
+/* 2. Tipos */
+.scroll{overflow-x:auto}
+.diagram{display:block;width:100%;min-width:600px;height:auto}
+.node rect{fill:var(--surface);stroke:var(--line);stroke-width:2;rx:14px;ry:14px}
+.node text{font:700 12.5px var(--body);fill:var(--muted);text-anchor:middle}
+.node.on rect{fill:var(--hs);stroke:var(--h)}
+.node.on text{fill:var(--ink)}
+.edge{fill:none;stroke:var(--line);stroke-width:3;stroke-linecap:round}
+.edge.on{stroke:var(--h);stroke-width:4.5;stroke-dasharray:1 10;animation:flow .8s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-22}}
+@media (prefers-reduced-motion:reduce){.edge.on{animation:none;stroke-dasharray:none}}
+.lbl{font:700 12px var(--body);fill:var(--muted);text-anchor:middle}.lbl.on{fill:var(--ink)}
+.now{display:inline-flex;align-items:center;gap:10px;background:var(--h);color:var(--on);border-radius:99px;padding:.5rem 1.1rem;font:800 1.1rem var(--display);margin-block:14px}
+.ind3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:12px}
+.ind{background:var(--hs);border-radius:22px;padding:14px 16px;min-width:0}
+.ind h4{font:700 .78rem var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--hi);margin-bottom:6px}
+.big{font:800 2.6rem/1 var(--display);letter-spacing:-.02em}
+.ms-track{position:relative;height:12px;background:var(--surface);border-radius:99px;margin:10px 0 4px}
+.ms-seg{position:absolute;top:0;bottom:0;background:var(--coral);border-radius:99px}
+.ms-seg.zero{background:var(--green);width:12px!important;left:0!important}
+.ms-scale{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)}
+.lvlbig{display:flex;gap:6px;color:var(--hi)}
+table{border-collapse:collapse;width:100%}
+th,td{padding:.5rem .4rem;border-bottom:1px solid var(--line);text-align:center;font-size:.92rem}
+th:first-child,td:first-child{text-align:left}
+th{font:700 .8rem var(--body);color:var(--muted)}
+td.sel,th.sel{background:var(--hs);color:var(--hi)}
+.dot{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%}
+.dot.y{background:var(--h);color:var(--on)}
+.dot.n{background:var(--chip);color:var(--muted)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* 4. Instalación */
+.when{display:inline-flex;gap:8px;align-items:center;font-weight:700;margin:14px 0;background:var(--hs);border-radius:99px;padding:.4rem 1rem}
+.arq{display:grid;gap:12px;margin:6px 0 12px}
+.pairs{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px}
+.pair{display:grid;gap:6px;text-align:center;justify-items:stretch}
+.wire{color:var(--muted);line-height:1}
+.unit{font:800 .95rem var(--display);padding:.8rem .4rem;border:0;background:var(--h);color:var(--on);border-radius:16px;cursor:pointer;min-width:0;transition:transform .15s,background .2s}
+.unit:hover{transform:translateY(-2px)}
+.unit[aria-pressed="true"]{background:var(--coral-soft);color:var(--coral-ink);text-decoration:line-through;box-shadow:inset 0 0 0 2px var(--coral)}
+.units{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:8px}
+.load{font:700 .85rem var(--body);padding:.6rem .3rem;border-radius:14px;text-align:center}
+.load.ok{background:var(--green-soft);color:var(--green-ink);box-shadow:inset 0 0 0 2px var(--green)}
+.load.off{background:var(--coral-soft);color:var(--coral-ink);box-shadow:inset 0 0 0 2px var(--coral)}
+.loads{display:grid;grid-template-columns:repeat(auto-fit,minmax(60px,1fr));gap:8px}
+.bus{height:4px;border-radius:2px;background:var(--line)}
+.pbar{position:relative;height:16px;background:var(--chip);border-radius:99px}
+.pfill{position:absolute;inset:0 auto 0 0;background:var(--green);border-radius:99px;transition:width .25s}
+.pfill.low{background:var(--coral)}
+.pneed{position:absolute;top:-5px;bottom:-5px;width:4px;border-radius:2px;background:var(--ink)}
+.pcap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin-top:8px}
+.msg{font:700 1.1rem/1.3 var(--display);margin-top:6px}
+.procon{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;margin-top:18px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;align-items:flex-start}
+#arqReset{margin-top:14px}
+.pills li{font-size:.92rem;font-weight:600;padding:.35rem .8rem;border-radius:99px}
+.pills.pro li{background:var(--green-soft);color:var(--green-ink)}
+.pills.pro li::before{content:"+ ";font-weight:800}
+.pills.con li{background:var(--coral-soft);color:var(--coral-ink)}
+.pills.con li::before{content:"− ";font-weight:800}
+
+/* 5. Baterías */
+.bat2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.batwrap{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.batwrap svg{width:min(100%,240px);height:auto;color:var(--ink)}
+.verdict{font:800 clamp(2.6rem,9vw,4rem)/1 var(--display);letter-spacing:-.03em}
+.verdict small{display:block;font:600 .95rem var(--body);letter-spacing:0;color:var(--muted)}
+.verdict.ok{color:var(--green-ink)}.verdict.warn{color:var(--orange-ink)}.verdict.bad{color:var(--coral-ink)}
+.slabel{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;margin-top:18px}
+.slabel output{font:800 1.6rem var(--display)}
+.rng{-webkit-appearance:none;appearance:none;width:100%;height:16px;border-radius:99px;margin:12px 0 4px;background:linear-gradient(90deg,var(--teal),var(--yellow),var(--coral));cursor:pointer}
+.rng::-webkit-slider-thumb{-webkit-appearance:none;width:32px;height:32px;border-radius:50%;background:#fff;border:5px solid var(--ink);box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.rng::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--ink)}
+.ticks{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted)}
+.yr{margin-top:14px}
+.yr small{display:flex;justify-content:space-between;font-weight:700;font-size:.9rem}
+.yr .trk{position:relative;height:18px;background:var(--chip);border-radius:99px;margin-top:6px;overflow:hidden}
+.yr .trk i{position:absolute;top:0;bottom:0;border-radius:99px;background:var(--h);transition:left .2s,width .2s}
+.yr .sc{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:2px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.facts li{display:inline-flex;gap:8px;align-items:center;background:var(--surface);border-radius:99px;padding:.4rem .9rem .4rem .5rem;font-weight:600;font-size:.92rem}
+.facts li i{width:28px;height:28px;border-radius:50%;background:var(--h);color:var(--on);display:grid;place-items:center}
+.care{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;margin-top:16px}
+.care div{border-radius:24px;padding:16px;display:grid;gap:6px;align-content:start}
+.care .blob{width:46px;height:46px;border-radius:16px}
+.care b{font:800 1.35rem/1.1 var(--display)}
+.care p{font-size:.9rem;color:var(--ink);opacity:.85}
+.care .k1{background:var(--yellow-soft)}.care .k2{background:var(--teal-soft)}.care .k3{background:var(--violet-soft)}.care .k4{background:var(--coral-soft)}
+.smart{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px 28px;align-items:center;margin-top:16px}
+@media (max-width:620px){.smart{grid-template-columns:1fr}}
+.smart .pct{font:800 clamp(3.4rem,12vw,5.5rem)/.9 var(--display);letter-spacing:-.04em;color:var(--hi)}
+.smart svg{width:100%;max-width:320px;height:auto;display:block}
+.steps3{display:flex;gap:6px;margin-top:8px}
+.steps3 span{flex:1;height:10px;border-radius:99px;background:var(--h)}
+.steps3 span:nth-child(2){opacity:.65}.steps3 span:nth-child(3){opacity:.35}
+
+/* 6. Elegir */
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;margin-bottom:16px}
+.term{border-radius:24px;padding:16px;display:grid;gap:4px;align-content:start}
+.term .k{font:800 2.6rem/1 var(--display);letter-spacing:-.02em}
+.term:nth-child(1){background:var(--blue-soft);color:var(--blue-ink)}
+.term:nth-child(2){background:var(--yellow-soft);color:var(--yellow-ink)}
+.term:nth-child(3){background:var(--violet-soft);color:var(--violet-ink)}
+.term:nth-child(4){background:var(--coral-soft);color:var(--coral-ink)}
+.term p{color:var(--ink);font-size:.98rem}
+.term b{display:block;color:inherit}
+.calc{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:20px;align-items:center}
+@media (max-width:560px){.calc{grid-template-columns:1fr;justify-items:center}}
+.mug{width:100%;max-width:240px;height:auto}
+.mug .ln{stroke:var(--ink);fill:none;stroke-width:6;stroke-linejoin:round;stroke-linecap:round}
+.mug text{font:800 17px var(--display);fill:var(--ink)}
+.mug .dim{stroke:var(--muted);stroke-width:2.5;fill:none;stroke-linecap:round}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;margin-bottom:12px}
+.field{display:grid;gap:4px;min-width:0}
+.field label{font:700 .88rem var(--body);color:var(--muted)}
+.field input,.field select{font:600 1.1rem var(--body);padding:.6rem .8rem;border:2px solid var(--line);border-radius:14px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+.field input:focus,.field select:focus{border-color:var(--h);outline:none}
+.result{font:800 clamp(1.8rem,5vw,2.6rem)/1.05 var(--display);letter-spacing:-.02em;color:var(--hi)}
+.legkey{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;font-weight:600;margin-top:8px}
+.legkey span::before{content:"";display:inline-block;width:.9em;height:.9em;border-radius:4px;margin-right:6px;vertical-align:-.1em;background:var(--beer)}
+.legkey span+span::before{background:var(--foam);box-shadow:inset 0 0 0 2px var(--line)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px;margin-top:16px}
+.pick{font-size:1.1rem;margin-bottom:10px}
+.use{display:inline-block;width:56px;height:8px;border-radius:99px;background:var(--chip);vertical-align:middle;margin-right:6px;overflow:hidden}
+.use i{display:block;height:100%;background:var(--green);border-radius:99px}
+.use i.hi{background:var(--orange)}
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin-top:16px}
+.checks li{background:var(--surface);border-radius:24px;padding:16px;display:grid;gap:8px;align-content:start;font-weight:600}
+.checks .blob{width:46px;height:46px;border-radius:16px}
+.case{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;margin-top:16px}
+.case div{background:var(--surface);border-radius:22px;padding:14px 16px;display:grid;gap:4px;align-content:start}
+.case b{font:800 1.15rem/1.15 var(--display);color:var(--hi)}
+.case p{font-size:.95rem}
+footer{padding-block:28px 56px;color:var(--muted);font-size:.88rem}
+footer .in{display:grid;gap:6px}
+</style>
+
+<header class="hero c-yellow"><div class="in">
+  <span class="pill-y">Guía Técnica SAI · Legrand 2013</span>
+  <h1>Descubre qué <span class="hl">SAI</span> necesitas</h1>
+  <p class="lede">Mantiene tu equipo encendido cuando la corriente falla o llega mal.</p>
+  <div class="flow">
+    <svg viewBox="0 0 1000 200" role="img" aria-label="La corriente de la red llega deformada, pasa por el SAI y sale limpia hacia tu equipo">
+      <rect x="10" y="60" width="100" height="80" rx="24" fill="#FF5A5F"/>
+      <g transform="translate(36 80) scale(1.7)" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5" transform="scale(.75) translate(2 1)"/></g>
+      <path id="heroIn" d="" fill="none" stroke="#FF8C90" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="390" y="26" width="220" height="148" rx="40" fill="#FFD23F"/>
+      <path d="M515 52 L468 112 H498 L486 150 L534 90 H504 Z" fill="#16134A"/>
+      <rect x="415" y="148" width="14" height="14" rx="4" fill="#16134A" opacity=".35"/><rect x="437" y="148" width="14" height="14" rx="4" fill="#16134A" opacity=".6"/>
+      <path id="heroOut" d="" fill="none" stroke="#FFD23F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="890" y="60" width="100" height="80" rx="24" fill="#00B8A9"/>
+      <g transform="translate(912 80) scale(1.5)" fill="none" stroke="#06302C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g>
+    </svg>
+    <div class="flow-cap"><span>La red</span><span>El SAI</span><span>Tu equipo</span></div>
+  </div>
+  <p class="legend"><span class="src" style="margin-left:0">p. 4</span> página de la guía · <span class="own">propio</span> dibujo o ejemplo nuestro</p>
+</div></header>
+
+<nav class="nav" aria-label="Secciones"><div class="in"><ul>
+  <li><a class="c-coral" href="#red"><b>1</b>La red</a></li>
+  <li><a class="c-violet" href="#tipos"><b>2</b>Tipos</a></li>
+  <li><a class="c-teal" href="#usos"><b>3</b>Usos</a></li>
+  <li><a class="c-blue" href="#instalacion"><b>4</b>Instalación</a></li>
+  <li><a class="c-orange" href="#baterias"><b>5</b>Baterías</a></li>
+  <li><a class="c-green" href="#elegir"><b>6</b>Los números</a></li>
+</ul></div></nav>
 
 <main>
 
-<!-- 0. ANTES DE EMPEZAR -->
-<section class="sec intro" id="basico">
-  <div class="sec-head"><h2>Antes de empezar</h2></div>
-  <p class="take">Un SAI es un aparato que sigue dando corriente a tu equipo cuando la de la red falla o llega mal.</p>
-  <dl class="defs">
-    <div><dt>SAI</dt><dd>
-      <p><b>Sistema de Alimentación Ininterrumpida</b> (en inglés, UPS). Se coloca entre el enchufe y tu equipo. Si la corriente se va o llega mal, sigue alimentando el equipo con sus baterías, así que no se apaga de golpe ni pierde datos. <span class="src">p. 1</span> <span class="src">p. 10</span></p>
-      <p class="ejemplo"><span class="own">propio</span> Es como una linterna de emergencia que se enciende sola cuando se va la luz.</p></dd></div>
-    <div><dt>Perturbación eléctrica</dt><dd>
-      <p>La guía las llama «interferencias de la red». Es cualquier cosa que hace que la corriente llegue distinta de lo normal: se corta, baja, sube o se deforma. Importa porque los equipos delicados pueden apagarse, estropearse o perder datos. <span class="src">p. 2</span></p>
-      <p class="ejemplo"><span class="own">propio</span> Es como el agua del grifo cuando sale a golpes o con poca presión.</p></dd></div>
-    <div><dt>Batería</dt><dd>
-      <p>Guarda la energía que el SAI usa cuando falta la red. Por eso tiene que estar siempre conectada, cargada y en buen estado. <span class="src">p. 10</span></p></dd></div>
-    <div><dt>Inversor</dt><dd>
-      <p>Es la pieza que toma la energía de la batería y se la entrega a tus equipos cuando falta la red. <span class="src">p. 4</span> <span class="own">propio</span> En palabras sencillas, la transforma en el tipo de corriente que dan los enchufes.</p></dd></div>
-  </dl>
-  <details class="more"><summary>Mini diccionario: otras palabras que verás</summary>
-    <dl class="dict">
-      <div><dt>Tensión (V)</dt><dd>Se mide en voltios. La guía toma 230 V como valor normal. <span class="src">p. 8</span> <span class="own">propio</span> Es como la presión del agua en una tubería.</dd></div>
-      <div><dt>Frecuencia (Hz)</dt><dd>Los ciclos por segundo de la corriente. En los modelos de la guía es de 50 o 60 Hz. <span class="src">p. 32</span> <span class="own">propio</span> la definición sencilla.</dd></div>
-      <div><dt>Forma de onda</dt><dd>La corriente de la red debería subir y bajar con una curva suave, la onda sinusoidal. Si se deforma, es una perturbación. <span class="src">p. 5</span></dd></div>
-      <div><dt>Carga</dt><dd>Lo que conectas al SAI para protegerlo: ordenadores, cajas registradoras, etc. <span class="src">p. 15</span></dd></div>
-      <div><dt>Grupo electrógeno</dt><dd>Generador de electricidad que se usa cuando falla la red. <span class="src">p. 3</span> <span class="own">propio</span> la explicación.</dd></div>
-      <div><dt>AVR</dt><dd>Regulador automático de tensión: filtra y estabiliza la tensión que llega. <span class="src">p. 4</span></dd></div>
-      <div><dt>Bypass</dt><dd>Camino alternativo: si el SAI se sobrecarga o falla por dentro, conecta el equipo directamente a la entrada para que siga con corriente. <span class="src">p. 4</span></dd></div>
-      <div><dt>Módulo</dt><dd>Cada SAI pequeño dentro de un SAI modular. Varios módulos juntos alimentan la carga. <span class="src">p. 17</span></dd></div>
-      <div><dt>Redundancia</dt><dd>Tener más módulos de los necesarios para que, si uno falla, el resto siga cubriendo la carga. <span class="src">p. 17</span> <span class="own">propio</span> la redacción.</dd></div>
-      <div><dt>Punto único de fallo</dt><dd>Una pieza de la que depende todo: si falla, se cae todo. <span class="src">p. 16</span></dd></div>
-      <div><dt>VRLA</dt><dd>Batería de plomo-ácido sellada y regulada por válvula, la más habitual en los SAI. <span class="src">p. 10</span></dd></div>
-      <div><dt>ms (milisegundo)</dt><dd><span class="own">propio</span> Una milésima de segundo.</dd></div>
-    </dl>
-  </details>
-  <p class="aside">La guía es de 2013. Describe los productos y las normas de esa fecha, y cita directivas y normas de esa época (por ejemplo, en la p. 7). Antes de decidir una compra, comprueba que los modelos y las normas siguen vigentes en la ficha actual del fabricante.</p>
-</section>
-
-<!-- 1. PROBLEMAS DE LA RED -->
-<section class="sec" id="red">
-  <div class="sec-head"><span class="no">1</span><h2>Qué le pasa a la corriente</h2></div>
-  <p class="take"><span class="take-l">Lo importante</span>La red eléctrica puede fallar de siete maneras, y todas pueden dañar tu equipo o hacerte perder datos.</p>
-  <div class="split">
-    <div><p class="hint">Elige un problema</p><div class="plist" id="plist" role="group" aria-label="Problemas de la red"></div></div>
-    <div class="panel stage" id="wavepanel">
-      <svg class="wave" id="waveSvg" viewBox="0 0 640 200" role="img" aria-label="Tensión normal frente a tensión con el problema elegido">
-        <rect class="zone" id="zone" x="0" y="0" width="0" height="200"/>
-        <line class="grid" x1="0" y1="100" x2="640" y2="100"/>
-        <line class="grid" x1="0" y1="40" x2="640" y2="40"/>
-        <line class="grid" x1="0" y1="160" x2="640" y2="160"/>
-        <path class="w-norm" id="wNorm" d=""/>
-        <path class="w-act" id="wAct" d=""/>
-      </svg>
-      <p class="cap">Línea discontinua: tensión normal. Línea azul: lo que llega al equipo. Zona sombreada: cuándo ocurre. <span class="own">propio</span> dibujo esquemático, no a escala.</p>
-      <h3 id="pName" style="margin-top:14px"></h3>
-      <div id="pKey"></div>
-      <div class="trio">
-        <div><h4>Qué pasa</h4><p id="pQ"></p></div>
-        <div><h4>Qué lo causa</h4><p id="pC"></p></div>
-        <div><h4>Qué provoca</h4><p id="pE"></p></div>
-      </div>
-      <details class="more"><summary>Ver el detalle de la guía</summary>
-        <dl class="facts">
-          <div><dt>Qué es</dt><dd id="pQue"></dd></div>
-          <div><dt>Qué lo causa</dt><dd id="pCausa"></dd></div>
-          <div><dt>Qué provoca</dt><dd id="pEfecto"></dd></div>
-        </dl>
-      </details>
+<!-- 1. LA RED -->
+<section class="band c-coral" id="red"><div class="in">
+  <div class="sh"><span class="blob"><i data-ico="bolt" data-s="32"></i></span><div><h2>¿Qué le puede pasar a mi equipo si lo enchufo directo a la pared?</h2><p class="take">7 problemas de la red. Toca uno.</p></div></div>
+  <div class="probs" id="plist" role="group" aria-label="Problemas de la red"></div>
+  <div class="stage" id="wavepanel">
+    <svg class="wave" viewBox="0 0 640 200" role="img" aria-label="Tensión normal frente a tensión con el problema elegido">
+      <rect class="zone" id="zone" x="0" y="0" width="0" height="200"/>
+      <line class="grid" x1="0" y1="100" x2="640" y2="100"/><line class="grid" x1="0" y1="40" x2="640" y2="40"/><line class="grid" x1="0" y1="160" x2="640" y2="160"/>
+      <path class="w-norm" id="wNorm" d=""/><path class="w-act" id="wAct" d=""/>
+    </svg>
+    <p class="cap">Discontinua: normal · Color: lo que llega · Zona amarilla: cuándo ocurre <span class="own">propio</span> esquema, no a escala</p>
+    <h3 class="pname" id="pName"></h3>
+    <div id="pKey"></div>
+    <div class="rows3">
+      <div class="row"><span class="ri"><i data-ico="wave"></i></span><div><small>Qué pasa</small><p id="pQ"></p></div></div>
+      <div class="row"><span class="ri"><i data-ico="bolt"></i></span><div><small>Causa</small><p id="pC"></p></div></div>
+      <div class="row"><span class="ri"><i data-ico="warn"></i></span><div><small>Efecto</small><p id="pE"></p></div></div>
     </div>
   </div>
-  <p class="aside">Las pp. 2 y 3 de la guía describen estos siete problemas; la p. 6 usa otra lista, de diez tipos de perturbación (en la sección 2). Son dos clasificaciones distintas y no coinciden una a una. <span class="src">p. 2</span> <span class="src">p. 6</span></p>
-  <p class="aside">Cuanto más se aleja la tensión de los 230 V, menos tiempo la aguantan los equipos sin fallos o averías (curva ITIC, para ordenadores y equipos parecidos). <span class="src">p. 8</span></p>
-</section>
+</div></section>
 
 <!-- 2. TIPOS -->
-<section class="sec band" id="tipos">
-  <div class="sec-head"><span class="no">2</span><h2>Tres tipos de SAI</h2></div>
-  <p class="take"><span class="take-l">Lo importante</span>Cuanto más completo es el SAI, más interferencias elimina y menos tarda en reaccionar.</p>
-  <p class="sublead">Elige un tipo y simula que se va la luz. Fíjate en dos cosas: qué interferencias deja pasar y cuánto tarda en pasar a baterías. A eso último se le llama <b>tiempo de conmutación</b>.</p>
-  <div class="panel stage">
-    <p class="hint">1 · Elige un tipo</p>
+<section class="band c-violet" id="tipos"><div class="in">
+  <div class="sh"><span class="blob"><i data-ico="shield" data-s="32"></i></span><div><h2>¿Qué diferencia a un SAI barato de uno caro?</h2><p class="take">Tres tipos: cuanto más completo, más limpia la corriente.</p></div></div>
+  <div class="stage">
     <div class="bigtabs" id="tipoTabs" role="group" aria-label="Tipo de SAI"></div>
-    <p class="hint">2 · Mira qué pasa con la red</p>
+    <p class="hint" style="margin-top:18px">Qué pasa con la red</p>
     <div class="tabs" id="escTabs" role="group" aria-label="Situación de la red"></div>
-    <div class="scroll" id="tipoDiagram"></div>
-    <p class="cap"><span class="own">propio</span> Esquema simplificado a partir de los dibujos de la guía. La línea que se mueve marca el camino de la energía.</p>
+    <div class="scroll" id="tipoDiagram" style="margin-top:8px"></div>
+    <p class="cap"><span class="own">propio</span> Esquema simplificado. La línea que se mueve es el camino de la energía.</p>
     <div id="tipoStatus" aria-live="polite"></div>
-    <p class="aside" id="tipoAnalog"></p>
-    <details class="more">
-      <summary>Qué problemas de la red cubre cada tipo <span class="src">p. 6</span></summary>
-      <p class="cap"><span class="own">propio</span> La guía agrupa con corchetes los diez problemas según la clasificación (VFD, VI, VFI). Aquí lo leemos como los problemas que cubre cada tipo.</p>
-      <p class="cap"><span class="own">propio</span> Punto a contrastar: en la p. 4 la guía dice que el off-line solo interviene cuando falta la tensión de entrada, pero los corchetes de la p. 6 también le asignan las fluctuaciones y sobretensiones breves (puntos 2 y 3). La guía no explica cómo; consúltalo en la ficha del fabricante.</p>
-      <div class="scroll"><table>
-        <thead><tr><th>Problema de la red</th><th>Off-line (VFD)</th><th>Line-interactive (VI)</th><th>On-line (VFI)</th></tr></thead>
-        <tbody>
-          <tr><td>1 · Interrupción de la alimentación, más de 10 ms</td><td class="yes">Cubre</td><td class="yes">Cubre</td><td class="yes">Cubre</td></tr>
-          <tr><td>2 · Fluctuaciones rápidas de la tensión, menos de 16 ms</td><td class="yes">Cubre</td><td class="yes">Cubre</td><td class="yes">Cubre</td></tr>
-          <tr><td>3 · Sobretensiones breves, de 4 a 16 ms</td><td class="yes">Cubre</td><td class="yes">Cubre</td><td class="yes">Cubre</td></tr>
-          <tr><td>4 · Huecos de tensión prolongados</td><td>—</td><td class="yes">Cubre</td><td class="yes">Cubre</td></tr>
-          <tr><td>5 · Sobretensiones prolongadas</td><td>—</td><td class="yes">Cubre</td><td class="yes">Cubre</td></tr>
-          <tr><td>6 · Arranques</td><td>—</td><td>—</td><td class="yes">Cubre</td></tr>
-          <tr><td>7 · Impulsos de sobretensión, menos de 4 ms</td><td>—</td><td>—</td><td class="yes">Cubre</td></tr>
-          <tr><td>8 · Fluctuaciones de la frecuencia</td><td>—</td><td>—</td><td class="yes">Cubre</td></tr>
-          <tr><td>9 · Distorsiones de la forma de onda de la tensión</td><td>—</td><td>—</td><td class="yes">Cubre</td></tr>
-          <tr><td>10 · Armónicos de la tensión</td><td>—</td><td>—</td><td class="yes">Cubre</td></tr>
-        </tbody></table></div>
-    </details>
+    <p class="cap" id="tipoAnalog" style="font-size:1rem"></p>
   </div>
-  <p class="aside">La norma EN 62040-3 clasifica los SAI con un código de tres partes: dependencia de la salida respecto a la entrada, forma de onda y comportamiento ante cambios de carga. Los mejores tienen clasificación VFI SS 111. <span class="src">p. 5</span></p>
-</section>
+</div></section>
 
-<!-- 3. APLICACIONES -->
-<section class="sec" id="usos">
-  <div class="sec-head"><span class="no">3</span><h2>Para qué se usa cada uno</h2></div>
-  <p class="take"><span class="take-l">Lo importante</span>Cada tipo de SAI tiene sus usos: elige según lo que quieras proteger.</p>
-  <div class="panel stage">
-    <p class="hint">Elige dónde lo vas a usar</p>
-    <div class="tabs" id="usoTabs" role="group" aria-label="Dónde se va a usar"></div>
-    <div id="usoOut" aria-live="polite"></div>
-    <details class="more">
-      <summary>Ver la lista completa de aplicaciones por tipo <span class="src">p. 9</span></summary>
-      <div class="three">
-        <div><h4>Off-line</h4><ul>
-          <li>PC doméstico (PC Home)</li><li>Puestos de trabajo de Internet</li><li>Centralitas telefónicas</li><li>Cajas registradoras</li><li>Terminales POS</li><li>Fax</li><li>Pequeños grupos de lámparas de emergencia</li><li>Automatización industrial y doméstica</li></ul></div>
-        <div><h4>Line-interactive</h4><ul>
-          <li>Networking de empresas</li><li>Sistemas de seguridad</li><li>Sistemas de emergencia</li><li>Sistemas de iluminación</li><li>Automatización domótica e industrial</li></ul></div>
-        <div><h4>On-line de doble conversión</h4><ul>
-          <li>Red IT empresarial</li><li>Telecomunicaciones</li><li>Equipos de electromedicina</li><li>Automatización industrial</li><li>Instalaciones de emergencia</li><li>Protección de líneas dedicadas</li><li>Aplicaciones críticas en los sectores industrial y público</li><li>Aguas abajo de los grupos electrógenos</li><li>Cualquier otra aplicación sensible a la calidad de la alimentación</li></ul></div>
+<!-- 3. USOS -->
+<section class="band c-teal" id="usos"><div class="in">
+  <div class="sh"><span class="blob"><i data-ico="home" data-s="32"></i></span><div><h2>¿Qué SAI necesito?</h2><p class="take">Para casa, una tienda o un hospital.</p></div></div>
+  <div class="stage">
+    <div class="bigtabs" id="usoTabs" role="group" aria-label="Dónde se va a usar"></div>
+    <div id="usoOut" aria-live="polite" style="margin-top:18px"></div>
+    <details class="more" open>
+      <summary>Aplicaciones de cada tipo<span class="src">p. 9</span></summary>
+      <div class="stack">
+        <div><p class="hint">Off-line</p><ul class="chipl"><li>PC doméstico</li><li>Puestos de Internet</li><li>Centralitas</li><li>Cajas registradoras</li><li>Terminales POS</li><li>Fax</li><li>Lámparas de emergencia pequeñas</li><li>Automatización industrial y doméstica</li></ul></div>
+        <div><p class="hint">Line-interactive</p><ul class="chipl"><li>Redes de empresa</li><li>Seguridad</li><li>Emergencia</li><li>Iluminación</li><li>Domótica e industria</li></ul></div>
+        <div><p class="hint">On-line doble conversión</p><ul class="chipl"><li>Red IT empresarial</li><li>Telecomunicaciones</li><li>Electromedicina</li><li>Automatización industrial</li><li>Instalaciones de emergencia</li><li>Líneas dedicadas</li><li>Aplicaciones críticas industriales y públicas</li><li>Aguas abajo de grupos electrógenos</li><li>Cualquier equipo sensible a la calidad de la corriente</li></ul></div>
       </div>
     </details>
   </div>
-</section>
+</div></section>
 
-<!-- 4. ARQUITECTURAS -->
-<section class="sec" id="instalacion">
-  <div class="sec-head"><span class="no">4</span><h2>Cómo se instala</h2></div>
-  <p class="take"><span class="take-l">Lo importante</span>Un SAI para cada equipo, uno para todo, o varios módulos que se reparten el trabajo.</p>
-  <p class="sublead">La arquitectura es la forma de repartir la protección: un SAI para cada carga (distribuida), un SAI para varias (centralizada) o un SAI formado por módulos que se reparten el trabajo (modular). <span class="src">p. 15</span> <span class="src">p. 16</span> <span class="src">p. 17</span> <span class="src">p. 18</span></p>
-  <div class="panel stage">
-    <p class="hint">Elige una forma de instalarlo</p>
+<!-- 4. INSTALACIÓN -->
+<section class="band c-blue" id="instalacion"><div class="in">
+  <div class="sh"><span class="blob"><i data-ico="plug" data-s="32"></i></span><div><h2>Si tengo 20 ordenadores, ¿un SAI en cada uno o uno grande para todos?</h2><p class="take">Tres arquitecturas. Pulsa un SAI o módulo para averiarlo.</p></div></div>
+  <div class="stage">
     <div class="bigtabs" id="arqTabs" role="group" aria-label="Arquitectura"></div>
-    <p class="ideal" id="arqWhen"></p>
-    <p class="hint">Pulsa un SAI o un módulo para averiarlo</p>
+    <p class="when" id="arqWhen"></p>
     <div id="arqDraw"></div>
-    <div class="tabs"><button type="button" class="btn" id="arqReset">Reparar todo</button></div>
+    <div class="tabs"><button type="button" class="btn ghost" id="arqReset">Reparar todo</button></div>
     <p class="msg" id="arqMsg" aria-live="polite"></p>
-    <p class="cap"><span class="own">propio</span> Las cifras del ejemplo (módulos, cargas y potencia necesaria) son inventadas para ilustrar.</p>
+    <p class="cap"><span class="own">propio</span> Las cifras del ejemplo (módulos, cargas, potencia) son inventadas.</p>
     <div class="procon">
-      <div><h4>A favor</h4><div id="arqPro"></div></div>
-      <div><h4>En contra</h4><div id="arqCon"></div></div>
+      <ul class="pills pro" id="arqPro"></ul>
+      <ul class="pills con" id="arqCon"></ul>
     </div>
   </div>
-</section>
+  <div class="case">
+    <div><b>20 SAI, uno por ordenador</b><p>Distribuida: cada SAI protege solo su equipo, pero hay 20 que vigilar y mantener.<span class="src">p. 15</span></p></div>
+    <div><b>1 SAI grande para todos</b><p>Centralizada: un solo sistema, más simple. Si falla, caen los 20.<span class="src">p. 16</span></p></div>
+    <div><b>Un SAI de módulos</b><p>Modular: varios módulos y uno de reserva, así que un fallo no para nada.<span class="src">p. 17</span></p></div>
+  </div>
+  <p class="cap"><span class="own">propio</span> Aplicamos las ventajas y desventajas de la guía al caso de los 20 ordenadores.</p>
+</div></section>
 
 <!-- 5. BATERÍAS -->
-<section class="sec band amber" id="baterias">
-  <div class="sec-head"><span class="no">5</span><h2>Las baterías</h2></div>
-  <p class="take"><span class="take-l">Lo importante</span>El calor es el enemigo de las baterías: por cada 10 °C más, duran la mitad.</p>
-  <p class="sublead">La batería guarda la energía que se usa cuando falla la red. Si no está cargada y en buen estado, el SAI no protege nada. <span class="src">p. 10</span> <span class="src">p. 13</span></p>
-  <div class="cols2">
-    <div class="panel">
-      <h3>Cómo es la batería de un SAI</h3>
-      <p>Los SAI suelen llevar baterías de plomo-ácido selladas y reguladas por válvula (VRLA). <span class="src">p. 10</span></p>
-      <ul class="shorts">
-        <li><b>Están selladas.</b> Los gases se recombinan dentro y, según la guía, no necesitan mantenimiento propio; aun así, recomienda revisarlas una vez al año. <span class="src">p. 10</span> <span class="src">p. 12</span></li>
-        <li><b>Se pueden instalar donde hay personas.</b> Necesitan muy poco cambio de aire y normalmente no exigen un estudio especial de ventilación. <span class="src">p. 10</span></li>
-        <li><b>No tienen «efecto memoria».</b> Pueden dar corrientes altas, trabajar de forma discontinua y no hace falta descargarlas del todo. <span class="src">p. 11</span></li>
-      </ul>
-      <details class="more">
-        <summary>Piezas de la batería</summary>
-        <ul class="parts">
-          <li>borne positivo</li><li>conexión de células de baja resistencia</li><li>placas paralelas del negativo</li><li>rejilla de plomo del negativo</li><li>separador</li><li>contenedor de polipropileno</li><li>tapa</li><li>válvula</li>
-        </ul>
-        <p class="cap">Piezas que muestra la guía. <span class="src">p. 10</span> El aire que necesitan se puede calcular con la norma EN 50272-2. <span class="src">p. 10</span></p>
-      </details>
-    </div>
-    <div class="panel stage">
-      <h3>¿Cuánto duran con el calor?</h3>
-      <label for="temp" class="slabel"><span>Temperatura de la sala</span> <output id="tempOut">25 °C</output></label>
-      <input class="rng" id="temp" type="range" min="15" max="45" step="1" value="25" aria-describedby="tempCap">
-      <div class="ticks" aria-hidden="true"><span style="left:0;transform:none">15 °C</span><span style="left:33.3%">25 °C · normal</span><span style="left:100%;transform:translateX(-100%)">45 °C</span></div>
-      <div class="verdict ok" id="verdict"><b id="lifePct">100 %</b><span id="lifeTxt">de la vida esperada: vida normal</span></div>
-      <div class="pairrow">
-        <div><small>Batería Standard Life</small><span class="yrs" id="lifeStd">5–6 años</span></div>
-        <div><small>Batería Long Life</small><span class="yrs" id="lifeLong">10–12 años</span></div>
+<section class="band c-orange" id="baterias"><div class="in">
+  <div class="sh"><span class="blob"><i data-ico="battery" data-s="32"></i></span><div><h2>¿Cuánto me durará la batería y cómo la cuido?</h2><p class="take">Por cada 10 °C de más, duran la mitad.</p></div></div>
+  <div class="bat2">
+    <div class="stage">
+      <div class="batwrap">
+        <svg viewBox="0 0 260 120" role="img" aria-label="Batería que se vacía con el calor"><rect x="6" y="14" width="230" height="92" rx="22" fill="none" stroke="currentColor" stroke-width="7"/><rect x="242" y="42" width="12" height="36" rx="5" fill="currentColor"/><rect id="batFill" x="18" y="26" height="68" rx="13" width="206" style="fill:var(--green)"/></svg>
+        <div class="verdict ok" id="verdict"><span id="lifePct">100 %</span><small id="lifeTxt">vida normal</small></div>
       </div>
-      <p class="cap" id="tempCap">Dato orientativo: la guía da 5–6 y 10–12 años con la temperatura nominal de 20–25 °C. <span class="src">p. 11</span> <span class="own">propio</span> El cálculo aplica su regla (por cada 10 °C más, la mitad); entre un salto de 10 °C y el siguiente es una estimación nuestra. Por debajo de 25 °C no sumamos vida porque la guía no lo dice.</p>
+      <label for="temp" class="slabel"><span>Temperatura de la sala</span><output id="tempOut">25 °C</output></label>
+      <input class="rng" id="temp" type="range" min="15" max="45" step="1" value="25" aria-describedby="tempCap">
+      <div class="ticks" aria-hidden="true"><span>15 °C</span><span>25 °C normal</span><span>45 °C</span></div>
+      <div class="yr"><small><span>Standard Life</span><span id="lifeStd"></span></small><div class="trk"><i id="barStd"></i></div></div>
+      <div class="yr"><small><span>Long Life</span><span id="lifeLong"></span></small><div class="trk"><i id="barLong"></i></div><div class="sc"><span>0</span><span>6</span><span>12 años</span></div></div>
+      <p class="cap" id="tempCap">La guía da 5–6 y 10–12 años a 20–25 °C<span class="src">p. 11</span> <span class="own">propio</span> Entre saltos de 10 °C es una estimación nuestra. Por debajo de 25 °C no sumamos vida.</p>
+    </div>
+    <div class="stage">
+      <h3 style="font:800 1.4rem var(--display)">Cómo son<span class="src">p. 10</span></h3>
+      <p style="margin-top:6px">Selladas, de plomo-ácido (VRLA).</p>
+      <ul class="facts">
+        <li><i data-ico="check" data-s="16"></i>Sin mantenimiento propio · revisión anual<span class="src">p. 12</span></li>
+      </ul>
+      <p class="hint" style="margin-top:16px">Piezas<span class="src">p. 10</span></p>
+        <ul class="chipl"><li>borne positivo</li><li>conexión de baja resistencia</li><li>placas del negativo</li><li>rejilla de plomo</li><li>separador</li><li>contenedor de polipropileno</li><li>tapa</li><li>válvula</li></ul>
     </div>
   </div>
 
-  <div class="panel" style="margin-top:20px">
-    <h3>Cómo cuidarlas</h3>
-    <div class="tiles">
-      <div class="tile"><small>Revisión y mantenimiento</small><b class="fig">1 vez al año</b><p>Como mínimo. <span class="src">p. 12</span></p></div>
-      <div class="tile"><small>Máximo sin conectarlas</small><b class="fig">6–10 meses</b><p>Se autodescargan y pueden dar problemas de recarga. <span class="src">p. 12</span></p></div>
-      <div class="tile"><small>Si no usas el SAI</small><b class="fig">Déjalo enchufado</b><p>Los modernos mantienen las baterías cargadas aunque estén apagados. <span class="src">p. 12</span></p></div>
-      <div class="tile"><small>Al final de su vida</small><b class="fig">Cámbialas a tiempo</b><p>Renueva el conjunto antes de que se agote del todo. <span class="src">p. 12</span></p></div>
-    </div>
-    <p class="aside">Los SAI modernos prueban y vigilan las baterías y avisan si detectan una anomalía. <span class="src">p. 12</span></p>
+  <div class="care">
+    <div class="k1"><span class="blob c-yellow"><i data-ico="calendar"></i></span><b>1 vez al año</b><p>Revisión mínima<span class="src">p. 12</span></p></div>
+    <div class="k2"><span class="blob c-teal"><i data-ico="clock"></i></span><b>6–10 meses</b><p>Máximo sin conectarlas: se autodescargan<span class="src">p. 12</span></p></div>
+    <div class="k3"><span class="blob c-violet"><i data-ico="plug"></i></span><b>Enchufado</b><p>Aunque no lo uses, mantiene la carga<span class="src">p. 12</span></p></div>
+    <div class="k4"><span class="blob c-coral"><i data-ico="refresh"></i></span><b>Cambia a tiempo</b><p>Antes de que se agoten del todo<span class="src">p. 12</span></p></div>
   </div>
 
-  <div class="panel stat" style="margin-top:20px">
-    <p class="kf" style="margin:0"><b>Hasta 50 %</b><span>más de vida</span></p>
-    <div>
-      <h3>Carga inteligente (Smart Charge)</h3>
-      <p style="margin:0">El cargador mide la tensión y la corriente de las baterías y recarga por fases, según su estado. Al llegar a plena carga, la intensidad baja hasta anularse, así que no las fatiga. <span class="src">p. 13</span></p>
-      <details class="more"><summary>Qué significa ese 50 %</summary><p>Según la guía, este sistema en tres etapas alarga la vida de las baterías hasta un 50 %, lo que reduce a la mitad el número de sustituciones. <span class="src">p. 13</span></p></details>
-    </div>
-  </div>
-</section>
+</div></section>
 
 <!-- 6. ELEGIR -->
-<section class="sec" id="elegir">
-  <div class="sec-head"><span class="no">6</span><h2>Cómo elegir el tuyo</h2></div>
-  <p class="take"><span class="take-l">Lo importante</span>Mira los vatios (W) de tu equipo y elige un SAI que llegue, sin pasarte de tamaño.</p>
+<section class="band c-green" id="elegir"><div class="in">
+  <div class="sh"><span class="blob"><i data-ico="scale" data-s="32"></i></span><div><h2>¿Qué significan los números de la caja, como «1000 VA / 600 W»?</h2><p class="take">Ejemplo de la guía: NIKY 1000, 1000 VA y 600 W<span class="src">p. 32</span></p></div></div>
   <div class="terms">
-    <div class="term"><span class="k">VA</span><p><b>Potencia aparente:</b> la capacidad total del SAI, en voltamperios. Es lo máximo que puede entregar. <span class="src">p. 7</span></p></div>
-    <div class="term"><span class="k">W</span><p><b>Potencia activa:</b> la parte de esa capacidad que hace trabajo útil, en vatios. Suele ser la cifra que indican los equipos. <span class="src">p. 7</span> <span class="own">propio</span> la segunda frase.</p></div>
-    <div class="term"><span class="k">FP</span><p><b>Factor de potencia:</b> la relación entre W y VA, es decir, W ÷ VA. <span class="src">p. 7</span> Ejemplo de la guía: el NIKY 1000 da 1000 VA y 600 W, así que su FP es 0,6. <span class="src">p. 32</span></p></div>
-    <div class="term"><span class="k">min</span><p><b>Autonomía:</b> el tiempo máximo que el SAI puede alimentar la carga sin red. <span class="src">p. 7</span> Con más autonomía hacen falta más baterías y tardan más en recargarse; calcúlala con la carga real. <span class="src">p. 12</span></p></div>
+    <div class="term"><span class="k">VA</span><p><b>Potencia aparente</b>La capacidad total del SAI<span class="src">p. 7</span></p></div>
+    <div class="term"><span class="k">W</span><p><b>Potencia activa</b>La parte que trabaja de verdad<span class="src">p. 7</span></p></div>
+    <div class="term"><span class="k">FP</span><p><b>Factor de potencia</b>W ÷ VA. NIKY 1000: 600 W ÷ 1000 VA = 0,6<span class="src">p. 7</span><span class="src">p. 32</span></p></div>
+    <div class="term"><span class="k">min</span><p><b>Autonomía</b>Cuánto aguanta sin red. Calcúlala con la carga real<span class="src">p. 7</span><span class="src">p. 12</span></p></div>
   </div>
-  <p class="sublead" style="margin:-20px 0 44px"><span class="own">propio</span> Imagina una jarra de cerveza: la jarra entera es la capacidad (VA) y la cerveza que bebes son los vatios (W); el resto es espuma. Por eso un SAI de 1000 VA y 600 W no admite una carga de 800 W: hay que respetar los dos límites.</p>
-
-  <div class="cols2">
-    <div class="panel stage">
-      <h3>De vatios a voltamperios</h3>
-      <p>Con los W de tu equipo y su factor de potencia, sacas los VA que necesita.</p>
-      <div class="fields">
-        <div class="field"><label for="cW">Potencia (W)</label><input id="cW" type="number" inputmode="decimal" min="0" step="any" value="500"></div>
-        <div class="field"><label for="cPF">Factor de potencia</label><input id="cPF" type="number" inputmode="decimal" min="0.1" max="1" step="0.01" value="0.7"></div>
+  <div class="stage">
+    <div class="calc">
+      <div style="justify-self:center;width:100%;text-align:center">
+        <svg class="mug" id="mug" viewBox="0 0 260 220" role="img" aria-label="Jarra: la jarra entera son los VA y la cerveza son los W">
+          <defs><clipPath id="mugClip"><path d="M60 30H180V170a24 24 0 0 1-24 24H84a24 24 0 0 1-24-24Z"/></clipPath></defs>
+          <g clip-path="url(#mugClip)"><rect x="60" y="30" width="120" height="164" style="fill:var(--foam)"/><rect id="beer" x="60" y="100" width="120" height="94" style="fill:var(--beer)"/>
+            <circle cx="90" cy="170" r="5" fill="#fff" opacity=".6"/><circle cx="130" cy="150" r="4" fill="#fff" opacity=".6"/><circle cx="155" cy="178" r="6" fill="#fff" opacity=".6"/></g>
+          <path class="ln" d="M60 30H180V170a24 24 0 0 1-24 24H84a24 24 0 0 1-24-24Z"/>
+          <path class="ln" d="M180 70h24a22 22 0 0 1 22 22v34a22 22 0 0 1-22 22h-24"/>
+          <path class="dim" d="M38 30V194M32 30h12M32 194h12"/><text x="38" y="20" text-anchor="middle">VA</text>
+        </svg>
+        <div class="legkey"><span>W (trabajo útil)</span><span>el resto</span></div>
       </div>
-      <p class="result" id="cOut" aria-live="polite"></p>
-      <p class="cap"><span class="own">propio</span> VA = W ÷ FP, despejado de la fórmula de la guía. <span class="src">p. 7</span> Redondeamos hacia arriba para no quedarnos cortos. Los valores son de ejemplo: cámbialos por los de tu equipo. Luego comprueba que los W del equipo no superan los W del SAI.</p>
-    </div>
-    <div class="panel stage">
-      <h3>Qué modelos de la guía llegan</h3>
-      <div class="fields">
-        <div class="field"><label for="mW">Tu carga (W)</label><input id="mW" type="number" inputmode="decimal" min="0" step="any" value="400"></div>
-        <div class="field"><label for="mVA">Tu carga (VA, opcional)</label><input id="mVA" type="number" inputmode="decimal" min="0" step="any" placeholder="vacío"></div>
-        <div class="field"><label for="mT">Tipo</label><select id="mT"><option value="any">Cualquiera</option><option value="li">Line-interactive</option><option value="on">On-line doble conversión</option></select></div>
+      <div>
+        <h3 style="font:800 1.4rem var(--display);margin-bottom:10px">De vatios a VA</h3>
+        <div class="fields">
+          <div class="field"><label for="cW">Potencia (W)</label><input id="cW" type="number" inputmode="decimal" min="0" step="any" value="600"></div>
+          <div class="field"><label for="cPF">Factor de potencia</label><input id="cPF" type="number" inputmode="decimal" min="0.1" max="1" step="0.01" value="0.6"></div>
+        </div>
+        <p class="result" id="cOut" aria-live="polite"></p>
+        <p class="cap"><span class="own">propio</span> VA = W ÷ FP<span class="src">p. 7</span> Valores de ejemplo: cámbialos. Redondeamos hacia arriba. La jarra de cerveza es una analogía nuestra.</p>
       </div>
-      <div id="mOut" aria-live="polite"></div>
     </div>
   </div>
 
-  <div class="panel" style="margin-top:20px">
-    <h3>Antes de decidir</h3>
-    <ol class="check">
-      <li><span><b>No basta con mirar los W de tu equipo.</b> Que el SAI tenga potencia suficiente no garantiza que sea la elección adecuada. <span class="src">p. 5</span></span></li>
-      <li><span><b>Hay cuatro cosas que conocer:</b> la potencia máxima de la carga, el rendimiento del SAI, su circuito de entrada y las posibles fuentes de energía adicionales. <span class="src">p. 19</span></span></li>
-      <li><span><b>Calcula la autonomía con la carga real</b> que vas a proteger, no con la potencia nominal del SAI. <span class="src">p. 12</span></span></li>
-      <li><span><b>No te pases de tamaño:</b> un SAI sobredimensionado cuesta más al comprarlo y gasta más después. <span class="src">p. 24</span></span></li>
-    </ol>
-  </div>
-</section>
+</div></section>
 
 </main>
 
-<footer>
-  <p>Contenido técnico: Guía Técnica SAI, sistemas de alimentación ininterrumpida, Legrand (2013). Cada dato indica su página. Los dibujos, las analogías y las cifras de los ejemplos son propios y van marcados.</p>
-  <p>La guía escribe «kVA» en las tablas de los modelos NIKY y Megaline, pero los valores son voltamperios (VA). Aquí se muestran en VA.</p>
-  <p>La guía es de 2013: los modelos, las normas y las directivas que cita pueden haber cambiado desde entonces.</p>
-</footer>
-</div>
-<script src="script.js" defer></script>
-</body>
-</html>
+<footer><div class="in">
+  <p>Fuente: Guía Técnica SAI, Legrand (2013). Cada dato lleva su página; dibujos, analogías y cifras de ejemplo son propios y van marcados.</p>
+  <p>La guía es de 2013: comprueba los datos en la ficha actual del fabricante.</p>
+</div></footer>
+
+<script>
+(function(){
+'use strict';
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var TAU=Math.PI*2;
+var fmt=function(n,d){return n.toLocaleString('es-ES',{maximumFractionDigits:d==null?0:d})};
+var RM=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Iconos */
+var ICO={
+  bolt:'<path d="M13 2 4 14h6l-1 8 9-12h-6z"/>',
+  battery:'<rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10.5v3M6 10v4M10 10v4"/>',
+  plug:'<path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/>',
+  shield:'<path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/>',
+  wave:'<path d="M2 12c2.5-8 4.5-8 7 0s4.500 8 7 0c1.200-3.800 3-5 6-3"/>',
+  warn:'<path d="M12 3 2 21h20z"/><path d="M12 10v5M12 18v.5"/>',
+  calendar:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  refresh:'<path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/>',
+  home:'<path d="M3 11l9-8 9 8M5 10v10h14V10M10 20v-6h4v6"/>',
+  store:'<path d="M4 9l1-5h14l1 5M4 9h16v11H4zM9 20v-6h6v6"/>',
+  plus:'<rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/>',
+  check:'<path d="M5 12.5l4.500 4.500L19 7.500"/>',
+  gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>',
+  scale:'<path d="M12 3v18M6 21h12M5 7h14M5 7l-3 7a3.500 3.500 0 0 0 6 0zM19 7l-3 7a3.500 3.500 0 0 0 6 0z"/>'
+};
+function ico(n,s){s=s||24;return '<svg class="ico" viewBox="0 0 24 24" width="'+s+'" height="'+s+'" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+ICO[n]+'</svg>'}
+function shieldSvg(on){return '<svg viewBox="0 0 24 24" width="22" height="22" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity="'+(on?1:.35)+'" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.500 9-8 11-4.500-2-8-6-8-11V5z"/></svg>'}
+function shields(n){var h='';for(var i=0;i<3;i++)h+=shieldSvg(i<n);return '<span class="shields">'+h+'</span>'}
+function src(p){return '<span class="src">p. '+p+'</span>'}
+$$('[data-ico]').forEach(function(el){el.innerHTML=ico(el.getAttribute('data-ico'),+el.getAttribute('data-s')||24)});
+
+function chips(host,items,cur,on){
+  host.innerHTML=items.map(function(i){return '<button type="button" class="chip" data-k="'+i.k+'" aria-pressed="'+(i.k===cur)+'">'+i.t+'</button>'}).join('');
+  host.onclick=function(e){var b=e.target.closest('[data-k]');if(b&&host.contains(b))on(b.getAttribute('data-k'))};
+}
+function setPressed(host,k){$$('[data-k]',host).forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-k')===k)})}
+function bigtabs(host,items,cur,on){
+  host.innerHTML=items.map(function(i){return '<button type="button" class="bt" data-k="'+i.k+'" aria-pressed="'+(i.k===cur)+'">'+(i.top||'')+'<b>'+i.t+'</b><span>'+i.s+'</span></button>'}).join('');
+  host.onclick=function(e){var b=e.target.closest('[data-k]');if(b&&host.contains(b))on(b.getAttribute('data-k'))};
+}
+
+
+var DICT=[
+  ['Tensión (V)','Voltios. La guía toma 230 V como normal.',8],['Frecuencia (Hz)','Ciclos por segundo: 50 o 60 Hz.',32],
+  ['Forma de onda','Curva suave (sinusoidal). Si se deforma, es una perturbación.',5],['Carga','Lo que conectas al SAI para protegerlo.',15],
+  ['Grupo electrógeno','Generador que se usa cuando falla la red.',3],['AVR','Regulador automático de tensión: filtra y estabiliza.',4],
+  ['Bypass','Camino alternativo: si el SAI falla o se sobrecarga, conecta el equipo directo a la entrada.',4],
+  ['Módulo','Cada SAI pequeño dentro de un SAI modular.',17],['Redundancia','Más módulos de los necesarios: si uno falla, el resto cubre.',17],
+  ['Punto único de fallo','Pieza de la que depende todo.',16],['VRLA','Batería de plomo-ácido sellada con válvula, la más habitual.',10],
+  ['ms','Una milésima de segundo.',0]
+];
+/* Portada: onda sucia que sale limpia */
+var heroIn=$('#heroIn'),heroOut=$('#heroOut');
+function heroDraw(ph){
+  var a='',b='',x,t,y;
+  for(x=130;x<=380;x+=4){t=(x-130)/250;
+    y=100-34*Math.sin(TAU*3*t+ph)-11*Math.sin(TAU*11*t+ph*3)-7*Math.sin(TAU*19*t+1)*(.5+.5*Math.sin(TAU*t*2+ph));
+    a+=(x===130?'M':'L')+x+' '+y.toFixed(1)}
+  for(x=620;x<=870;x+=4){t=(x-620)/250;b+=(x===620?'M':'L')+x+' '+(100-34*Math.sin(TAU*3*t+ph-1.2)).toFixed(1)}
+  heroIn.setAttribute('d',a);heroOut.setAttribute('d',b);
+}
+heroDraw(0);
+
+/* 1. Problemas de la red */
+var PROB=[
+  {id:'brown',short:'Brown-out',name:'Tensión insuficiente (brown-out)',p:2,zone:[220,440],
+   q:'La tensión baja un momento',c:'Motores, compresores y ascensores al arrancar',e:'El equipo se cae y se pierden datos',kf:['87 %','de los problemas de alimentación']},
+  {id:'apagon',short:'Apagón',name:'Apagón (blackout)',p:2,zone:[220,520],
+   q:'No llega nada de corriente',c:'Demanda alta, temporales, hielo, obras, accidentes',e:'Datos perdidos, producción parada, riesgo para personas'},
+  {id:'spike',short:'Spike',name:'Spike (pico de tensión)',p:3,zone:[316,344],
+   q:'Pico repentino de tensión',c:'Sobre todo rayos; también al volver la red',e:'Componentes dañados y datos perdidos para siempre'},
+  {id:'sobre',short:'Sobretensión',name:'Sobretensión',p:3,zone:[250,390],
+   q:'La tensión sube un momento',c:'Motores grandes (aire acondicionado) al apagarse',e:'Averías prematuras',kf:['1/120 s','duración típica']},
+  {id:'ruido',short:'Ruido EMI / RFI',name:'Ruido EMI / RFI',p:3,zone:null,
+   q:'Interferencias que deforman la onda',c:'Rayos, generadores, radio, aparatos industriales',e:'Errores en datos y comunicaciones'},
+  {id:'armon',short:'Armónicas',name:'Corrientes parásitas y armónicas',p:3,zone:null,
+   q:'Corrientes extra que deforman la onda',c:'Cambios de carga, generadores, industria, atmósfera',e:'Errores en programas y ordenadores que envejecen antes'},
+  {id:'frec',short:'Frecuencia',name:'Variaciones de frecuencia',p:3,zone:[300,640],
+   q:'La frecuencia de la corriente cambia',c:'Típico de los grupos electrógenos',e:'Errores de cálculo; fallos en discos, cintas y equipos electromecánicos'}
+];
+var WW=640,MID=100,AMP=60,CYC=3;
+function envl(x,a,b,r){return x<a||x>b?0:x<a+r?(x-a)/r:x>b-r?(b-x)/r:1}
+function sample(kind,x,ph){
+  var th=TAU*CYC*x/WW+ph,a=1,add=0;
+  if(kind==='brown')a=1-.5*envl(x,220,440,18);
+  else if(kind==='apagon')a=1-envl(x,220,520,10);
+  else if(kind==='sobre')a=1+.45*envl(x,250,390,10);
+  else if(kind==='frec'&&x>300)th=TAU*CYC*300/WW+ph+TAU*CYC*1.45*(x-300)/WW;
+  var s=Math.sin(th),v=a*s;
+  if(kind==='spike')add=1.5*Math.exp(-Math.pow((x-330)/5,2));
+  if(kind==='ruido')v+=.1*Math.sin(TAU*47*x/WW+ph*4)+.07*Math.sin(TAU*83*x/WW+1.3);
+  if(kind==='armon')v=.78*(s+.32*Math.sin(3*th)+.14*Math.sin(5*th+.5));
+  return Math.max(6,Math.min(194,MID-AMP*(v+add)));
+}
+function pathFor(kind,ph){var d='';for(var x=0;x<=WW;x+=2){d+=(x?'L':'M')+x+' '+sample(kind,x,ph).toFixed(1)}return d}
+function spark(kind){
+  var d='';for(var x=0;x<=WW;x+=4){d+=(x?'L':'M')+(x*120/WW).toFixed(1)+' '+(sample(kind,x,0)*40/200).toFixed(1)}
+  return '<svg viewBox="0 0 120 40" aria-hidden="true"><path d="'+d+'" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+var curP=PROB[0];
+function drawWave(ph){$('#wNorm').setAttribute('d',pathFor('norm',ph));$('#wAct').setAttribute('d',pathFor(curP.id,ph))}
+function showProb(k){
+  curP=PROB.filter(function(p){return p.id===k})[0]||PROB[0];
+  setPressed($('#plist'),curP.id);
+  $('#pName').innerHTML=curP.name+src(curP.p);
+  $('#pKey').innerHTML=curP.kf?'<p class="kf"><b>'+curP.kf[0]+'</b><span>'+curP.kf[1]+'</span></p>':'';
+  $('#pQ').textContent=curP.q;$('#pC').textContent=curP.c;$('#pE').textContent=curP.e;
+  var z=$('#zone');
+  if(curP.zone){z.setAttribute('x',curP.zone[0]);z.setAttribute('width',curP.zone[1]-curP.zone[0]);z.style.display=''}else{z.style.display='none'}
+  drawWave(0);
+}
+$('#plist').innerHTML=PROB.map(function(p,i){return '<button type="button" class="tile-btn" data-k="'+p.id+'" aria-pressed="'+(i===0)+'">'+spark(p.id)+'<span>'+p.short+'</span></button>'}).join('');
+$('#plist').onclick=function(e){var b=e.target.closest('[data-k]');if(b)showProb(b.getAttribute('data-k'))};
+showProb(PROB[0].id);
+
+/* Animación (solo si se ve y no hay reducción de movimiento) */
+var vis={wave:true,hero:true};
+if(!RM){
+  var frame=function(ts){
+    if(vis.hero)heroDraw(-(ts/1000)*2);
+    if(vis.wave)drawWave(-(ts/1000)*1.6);
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+if('IntersectionObserver' in window){
+  new IntersectionObserver(function(es){vis.wave=es[0].isIntersecting}).observe($('#wavepanel'));
+  new IntersectionObserver(function(es){vis.hero=es[0].isIntersecting}).observe($('.flow'));
+}
+
+/* 2. Tipos de SAI */
+var ESC=[{k:'mains',t:'Hay corriente'},{k:'batt',t:'Se va la luz'},{k:'fault',t:'Avería o sobrecarga del SAI'}];
+var ALL=['mains','batt','fault'];
+var TIPOS={
+  off:{name:'Off-line',sub:'Actúa solo si se va la luz',lvl:0,code:'VFD',cs:'La salida depende de la red',
+    nodes:[['IN',['Entrada'],10,40,70,44,['mains']],['SW',['Conmutador'],270,40,100,44,['mains','batt']],['OUT',['Salida'],610,40,80,44,ALL],
+           ['CH',['Cargador'],170,150,100,44,['mains']],['BA',['Baterías'],320,150,110,44,['mains','batt']],['INV',['Inversor'],490,150,110,44,['batt']]],
+    edges:[['M80 62H270',['mains']],['M370 62H610',['mains','batt']],['M130 62V172H170',['mains']],['M270 172H320',['mains']],['M430 172H490',['batt']],['M545 150V118H320V84',['batt']]],
+    salida:{mains:'La salida es igual que la entrada: el SAI no interviene.',batt:'Un inversor alimentado por las baterías. Solo actúa cuando falta la tensión de entrada.'},
+    filtro:'No las corrige: la salida es igual que la entrada.',ms:'3–5 ms',
+    analog:'Es un suplente en el banquillo: no juega hasta que el titular falla.'},
+  li:{name:'Line-interactive',sub:'Filtra y estabiliza',lvl:1,code:'VI',cs:'Tensión estabilizada',
+    nodes:[['IN',['Entrada'],10,40,70,44,['mains']],['AV',['AVR'],130,40,90,44,['mains']],['SW',['Conmutador'],290,40,100,44,['mains','batt']],['OUT',['Salida'],610,40,80,44,ALL],
+           ['CH',['Cargador'],170,150,100,44,['mains']],['BA',['Baterías'],320,150,110,44,['mains','batt']],['INV',['Inversor'],490,150,110,44,['batt']]],
+    edges:[['M80 62H130',['mains']],['M220 62H290',['mains']],['M390 62H610',['mains','batt']],['M105 62V172H170',['mains']],['M270 172H320',['mains']],['M430 172H490',['batt']],['M545 150V118H340V84',['batt']]],
+    salida:{mains:'La tensión pasa por un filtro y estabilizador (AVR); parte de las interferencias puede llegar a la salida.',batt:'Como el off-line: la salida pasa al inversor, alimentado por las baterías.'},
+    filtro:'Las corrige en parte: algunas variaciones pueden llegar a la salida.',ms:'3–5 ms',
+    analog:'Es un suplente con un ayudante que corrige pequeños fallos mientras espera.'},
+  on:{name:'On-line doble conversión',sub:'Regenera la corriente siempre',lvl:2,code:'VFI',cs:'Salida independiente de la red',
+    nodes:[['IN',['Entrada'],10,40,70,44,['mains','fault']],['PF',['Rectificador','PFC'],130,40,120,44,['mains']],['INV',['Inversor'],330,40,110,44,['mains','batt']],['OUT',['Salida'],610,40,80,44,ALL],
+           ['BA',['Baterías'],225,150,130,44,['mains','batt']]],
+    edges:[['M80 62H130',['mains']],['M250 62H330',['mains']],['M440 62H610',['mains','batt']],['M270 62V150',['mains']],['M315 150V118H385V84',['batt']],['M45 40V12H650V40',['fault']]],
+    bypass:true,
+    salida:{mains:'La entrada se rectifica y se convierte otra vez en alterna: la salida no depende de la entrada.',batt:'El inversor ya alimentaba la salida: el paso a baterías no se nota.',fault:'El bypass automático conecta la carga directo a la entrada y sigue recibiendo energía.'},
+    filtro:'Las elimina todas.',ms:'0 ms',
+    analog:'Es un jugador que siempre está en el campo: no hay cambio que hacer.'}
+};
+var tipo='off',escen='mains';
+function drawTipo(){
+  var T=TIPOS[tipo],s='<svg class="diagram c-violet" viewBox="0 0 700 215" role="img" aria-label="Esquema del SAI '+T.name+'">'+
+    '<defs><marker id="ahOn" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--h)"/></marker><marker id="ahOff" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--line)"/></marker></defs>';
+  T.edges.forEach(function(e){
+    var on=e[1].indexOf(escen)>-1;
+    s+='<path class="edge'+(on?' on':'')+'" d="'+e[0]+'" marker-end="url(#'+(on?'ahOn':'ahOff')+')"/>';
+  });
+  if(T.bypass)s+='<text class="lbl'+(escen==='fault'?' on':'')+'" x="350" y="31">Bypass automático</text>';
+  T.nodes.forEach(function(n){
+    var on=n[6].indexOf(escen)>-1,lab=n[1];
+    if(n[0]==='IN'&&escen==='batt')lab=['SIN RED'];
+    s+='<g class="node'+(on?' on':'')+'"><rect x="'+n[2]+'" y="'+n[3]+'" width="'+n[4]+'" height="'+n[5]+'" rx="2"/>';
+    if(lab.length===1)s+='<text x="'+(n[2]+n[4]/2)+'" y="'+(n[3]+n[5]/2+4)+'">'+lab[0]+'</text>';
+    else s+='<text x="'+(n[2]+n[4]/2)+'" y="'+(n[3]+n[5]/2-3)+'">'+lab[0]+'</text><text x="'+(n[2]+n[4]/2)+'" y="'+(n[3]+n[5]/2+11)+'">'+lab[1]+'</text>';
+    s+='</g>';
+  });
+  $('#tipoDiagram').innerHTML=s+'</svg>';
+  var who=escen==='mains'?'Energía: la red':escen==='batt'?'Energía: las baterías':'Energía: el bypass';
+  var seg=T.ms==='0 ms'?'<div class="ms-seg zero"></div>':'<div class="ms-seg" style="left:30%;width:20%"></div>';
+  var SC=['No las corrige','Las corrige en parte','Las elimina todas'];
+  $('#tipoStatus').innerHTML=
+    '<div class="now"><i data-ico="bolt" data-s="20"></i>'+who+'</div>'+
+    '<div class="ind3">'+
+      '<div class="ind"><h4>Tiempo de cambio</h4><p class="big">'+T.ms+'</p><div class="ms-track" aria-hidden="true">'+seg+'</div><div class="ms-scale" aria-hidden="true"><span>0</span><span>10 ms</span></div>'+src(6)+'</div>'+
+      '<div class="ind"><h4>Interferencias</h4><div class="lvlbig">'+shields(T.lvl+1).replace(/width="22" height="22"/g,'width="34" height="34"')+'</div><p style="font-weight:700;margin-top:6px">'+SC[T.lvl]+'</p>'+src(4)+'</div>'+
+    '</div>'+
+    '<details class="more"><summary>Cómo funciona ahora</summary><p>'+T.salida[escen]+src(4)+'</p><p>Interferencias: '+T.filtro.charAt(0).toLowerCase()+T.filtro.slice(1)+'</p>'+
+    (T.ms==='0 ms'?'<p class="cap">Sin hueco en la onda: la salida sale siempre del inversor.</p>':'<p class="cap">La guía imprime «3+5 ms» sin explicar el «+». <span class="own">propio</span> Lo leemos como 3–5 ms.</p>')+'</details>';
+  $$('#tipoStatus [data-ico]').forEach(function(el){el.innerHTML=ico(el.getAttribute('data-ico'),+el.getAttribute('data-s')||24)});
+  $('#tipoAnalog').innerHTML='<span class="own">propio</span> '+T.analog;
+}
+var KEYS=['off','li','on'];
+function showEsc(){
+  var items=ESC.filter(function(e){return e.k!=='fault'||TIPOS[tipo].bypass});
+  chips($('#escTabs'),items,escen,function(k){escen=k;setPressed($('#escTabs'),k);drawTipo()});
+}
+bigtabs($('#tipoTabs'),KEYS.map(function(k){return {k:k,t:TIPOS[k].name,s:TIPOS[k].sub,top:shields(TIPOS[k].lvl+1)}}),tipo,function(k){
+  tipo=k;if(escen==='fault'&&!TIPOS[k].bypass)escen='mains';
+  setPressed($('#tipoTabs'),k);showEsc();drawTipo();
+});
+showEsc();drawTipo();
+
+/* 3. Usos */
+var USOS={
+  casa:{t:'En casa',s:'PC y domótica',ic:'home',tipo:'off',eq:['PC doméstico','Puestos de Internet','Automatización doméstica'],
+    mas:'La domótica también aparece en line-interactive.',why:'Equipos pequeños: basta un SAI que actúe solo si falta la red.',whyP:'4 y 9'},
+  tienda:{t:'En una tienda',s:'Cajas y terminales',ic:'store',tipo:'off',eq:['Cajas registradoras','Terminales POS','Centralitas telefónicas','Fax'],
+    mas:'Para seguridad o red de empresa, la guía recomienda line-interactive.',why:'Cajas y terminales de venta están en la lista del off-line.',whyP:'9'},
+  hospital:{t:'En un hospital',s:'Equipos críticos',ic:'plus',tipo:'on',eq:['Electromedicina','Instalaciones de emergencia','Red IT empresarial','Telecomunicaciones'],
+    mas:'También para aplicaciones críticas industriales y públicas.',why:'La electromedicina está en la lista del on-line: cambia en 0 ms y elimina todo.',whyP:'4, 6 y 9'}
+};
+var TN={off:'Off-line',li:'Line-interactive',on:'On-line doble conversión'};
+var LV={off:1,li:2,on:3};
+var uso='casa';
+function showUso(k){
+  uso=k;setPressed($('#usoTabs'),k);
+  var u=USOS[k];
+  $('#usoOut').innerHTML=
+    '<div class="now c-teal" style="margin-top:0"><span>Te conviene</span><span class="lvlbig" style="color:inherit">'+shields(LV[u.tipo]).replace(/width="22" height="22"/g,'width="26" height="26"')+'</span>'+TN[u.tipo]+'</div>'+
+    '<p style="font-weight:600">'+u.why+src(u.whyP)+' <span class="own">propio</span></p>'+
+    '<p class="hint" style="margin-top:16px">Equipos de la guía'+src(9)+'</p>'+
+    '<ul class="chipl">'+u.eq.map(function(e){return '<li>'+e+'</li>'}).join('')+'</ul>'+
+    '<p class="cap">'+u.mas+' <span class="own">propio</span> La guía habla de equipos, no de estos lugares.</p>';
+}
+bigtabs($('#usoTabs'),Object.keys(USOS).map(function(k){return {k:k,t:USOS[k].t,s:USOS[k].s,top:ico(USOS[k].ic,28)}}),uso,showUso);
+$('#usoTabs').className+=' c-teal';
+showUso(uso);
+
+/* 4. Arquitecturas */
+var ARQ={
+  dist:{t:'Distribuida',sub:'Un SAI por equipo',p:15,
+    ideal:'Aplicaciones poco críticas con dificultades logísticas',
+    pro:['Usa las tomas de pared','Cada SAI se ajusta a su equipo','Admite SAI antiguos','Se amplía en cada sitio'],
+    con:['Difícil de vigilar','Mantenimiento largo: baterías una a una','Redundancia difícil','Apagado de emergencia máquina a máquina','Más coste y consumo']},
+  cent:{t:'Centralizada',sub:'Un SAI para todo',p:16,
+    ideal:'Proteger toda la estructura',
+    pro:['Un solo sistema que gestionar','Dura más: SAI y baterías','Más eficiente','Local técnico protegido'],
+    con:['Punto único de fallo','Suele estar lejos de la carga','Ocupa más en total','Cableado y ampliación caros','Exige técnicos']},
+  mod:{t:'Modular',sub:'Módulos que se reparten el trabajo',p:17,
+    ideal:'Los centros neurálgicos de una empresa',
+    pro:['Redundancia interna fácil','Instalar y ampliar más rápido','Mantenimiento fácil','Ocupa menos que la centralizada'],
+    con:['Compra inicial posiblemente más cara','Puede exigir técnicos','Ocupa más que la distribuida']}
+};
+var arq='dist',broken=[];
+function nBroken(){return broken.filter(Boolean).length}
+function unitBtn(i,label){return '<button type="button" class="unit" data-u="'+i+'" aria-pressed="'+(!!broken[i])+'">'+label+'</button>'}
+function powerBlock(total,need){
+  var avail=(total-nBroken())/total*100,needP=need/total*100;
+  return '<div><div class="pbar" role="img" aria-label="Potencia disponible '+fmt(avail,1)+' %, necesaria '+fmt(needP,1)+' %"><div class="pfill'+(avail<needP?' low':'')+'" style="width:'+avail+'%"></div><div class="pneed" style="left:'+needP+'%"></div></div>'+
+    '<div class="pcap"><span>Disponible: '+fmt(avail,1)+' %</span><span>Raya negra: lo que necesita la carga ('+fmt(needP,1)+' %)</span></div></div>';
+}
+function loadsHtml(n,okArr){var s='';for(var i=0;i<n;i++)s+='<div class="load '+(okArr[i]?'ok':'off')+'">Carga '+(i+1)+'</div>';return '<div class="loads">'+s+'</div>'}
+function drawArq(){
+  var A=ARQ[arq],h='',msg='',n=nBroken(),i;
+  if(arq==='dist'){
+    h='<div class="pairs">';
+    for(i=0;i<3;i++)h+='<div class="pair">'+unitBtn(i,'SAI '+(i+1))+'<span class="wire">▼</span><div class="load '+(broken[i]?'off':'ok')+'">Carga '+(i+1)+'</div></div>';
+    h+='</div>';
+    msg=n?'Cada SAI protege solo su carga. Redundancia difícil.':'Todo funciona: un SAI por carga.';
+  }else if(arq==='cent'){
+    var ok=[];for(i=0;i<7;i++)ok.push(!broken[0]);
+    h='<div class="arq">'+unitBtn(0,'SAI único')+'<div class="bus"></div>'+loadsHtml(7,ok)+'</div>';
+    msg=n?'Falla el único SAI y caen las 7 cargas: punto único de fallo.':'Un solo SAI protege las siete cargas.';
+  }else if(arq==='mod'){
+    var okm=(4-n)>=3,units='';for(i=0;i<4;i++)units+=unitBtn(i,'Módulo '+(i+1));
+    h='<div class="arq"><div class="units">'+units+'</div><div class="bus"></div>'+loadsHtml(3,[okm,okm,okm])+powerBlock(4,3)+'</div>';
+    msg=n===0?'4 módulos, la carga necesita 3. El cuarto es la reserva (redundancia).':okm?'Un módulo averiado: los otros tres cubren la carga.':'Con '+n+' módulos averiados ya no alcanza.';
+  }else{
+    var okg=(8-n)>=6,u2='';for(i=0;i<8;i++)u2+=unitBtn(i,'M'+(i+1));
+    h='<div class="arq"><div class="units">'+u2+'</div><div class="bus"></div>'+loadsHtml(3,[okg,okg,okg])+powerBlock(8,6)+'</div>';
+    msg=n===0?'8 módulos pequeños, la carga necesita 6.':okg?'Cada módulo resta solo un 12,5 %. '+(8-n>6?'Aún sobra potencia.':'Llega justo: la reserva se agotó.'):'Con '+n+' módulos averiados ya no alcanza.';
+  }
+  $('#arqDraw').innerHTML=h;
+  $('#arqMsg').innerHTML=msg+src(A.p);
+}
+function showArq(k){
+  arq=k;broken=[];setPressed($('#arqTabs'),k);
+  var A=ARQ[k],li=function(x){return '<li>'+x+'</li>'};
+  $('#arqWhen').innerHTML='Ideal para: '+A.ideal+src(A.p);
+  $('#arqPro').innerHTML=A.pro.map(li).join('');
+  $('#arqCon').innerHTML=A.con.map(li).join('');
+  drawArq();
+}
+bigtabs($('#arqTabs'),Object.keys(ARQ).map(function(k){return {k:k,t:ARQ[k].t,s:ARQ[k].sub}}),arq,showArq);
+$('#arqDraw').addEventListener('click',function(e){
+  var b=e.target.closest('[data-u]');if(!b)return;
+  var i=+b.getAttribute('data-u');broken[i]=!broken[i];drawArq();
+});
+$('#arqReset').onclick=function(){broken=[];drawArq()};
+showArq(arq);
+
+/* 5. Baterías */
+function lifeFactor(t){return t<=25?1:Math.pow(.5,(t-25)/10)}
+function setBar(id,lo,hi,f){
+  var a=lo*f,b=hi*f,el=$(id);
+  el.style.left=(a/12*100)+'%';el.style.width=Math.max(2,(b-a)/12*100)+'%';
+}
+function updTemp(){
+  var t=+$('#temp').value,f=lifeFactor(t);
+  $('#tempOut').textContent=t+' °C';
+  $('#verdict').className='verdict '+(f>=1?'ok':f>.5?'warn':'bad');
+  $('#lifePct').textContent=fmt(f*100,0)+' %';
+  $('#lifeTxt').textContent=f>=1?'vida normal':f>.5?'duran menos':'duran la mitad o menos';
+  var fill=$('#batFill');fill.setAttribute('width',Math.max(8,206*Math.min(1,f)));
+  fill.style.fill=f>=1?'var(--green)':f>.5?'var(--orange)':'var(--coral)';
+  $('#lifeStd').textContent=fmt(5*f,1)+'–'+fmt(6*f,1)+' años';
+  $('#lifeLong').textContent=fmt(10*f,1)+'–'+fmt(12*f,1)+' años';
+  setBar('#barStd',5,6,f);setBar('#barLong',10,12,f);
+}
+$('#temp').addEventListener('input',updTemp);updTemp();
+
+/* 6. Elegir */
+function setMug(pf){
+  var H=164,h=H*pf;
+  $('#beer').setAttribute('y',30+H-h);$('#beer').setAttribute('height',h);
+}
+function updConv(){
+  var w=parseFloat($('#cW').value),pf=parseFloat($('#cPF').value),o=$('#cOut');
+  if(!(pf>=0.1&&pf<=1)){o.textContent='El factor de potencia va de 0,1 a 1.';return}
+  setMug(pf);
+  if(!(w>0)){o.textContent='Escribe los vatios de tu equipo.';return}
+  o.textContent=fmt(w)+' W ÷ '+fmt(pf,2)+' = al menos '+fmt(Math.ceil(w/pf))+' VA';
+}
+$('#cW').addEventListener('input',updConv);$('#cPF').addEventListener('input',updConv);updConv();
+
+/* Navegación: sección actual */
+if('IntersectionObserver' in window){
+  var links=$$('.nav a');
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){links.forEach(function(a){a.removeAttribute('aria-current')});
+        var a=$('.nav a[href="#'+e.target.id+'"]');if(a)a.setAttribute('aria-current','true')}
+    });
+  },{rootMargin:'-35% 0px -60% 0px'});
+  $$('main section').forEach(function(s){io.observe(s)});
+}
+})();
+</script>
+
+</body></html>
